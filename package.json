@@ -1,0 +1,24 @@
+{
+  "name": "form-generator-sufaz-version2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "install_both": "concurrently \"npm run i_server\" \"npm run i_client\"",
+    "i_server": "npm install --prefix server",
+    "i_client": "npm install --prefix client",
+    "server": "npm start --prefix server",
+    "client": "npm start --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Code-Generator-Sufaz/form-generator-sufaz-version2.git"
+  },
+  "author": "sufaz",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.4.0",
+    "dotenv": "^16.0.3"
+  }
+}
