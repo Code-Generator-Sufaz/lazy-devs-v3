@@ -6,6 +6,7 @@ const passportOauth = app => {
     const User = require('./models/User');
     const bcrypt = require('bcrypt');
     require("dotenv").config();
+    const config = require('../config')
 
     const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
     const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
@@ -23,7 +24,7 @@ const passportOauth = app => {
     passport.use(new GitHubStrategy({
         clientID: GITHUB_CLIENT_ID,
         clientSecret: GITHUB_CLIENT_SECRET,
-        callbackURL: "https://lazy-devs-backend.onrender.com/authentication/github/callback"
+        callbackURL: config[config.model].domain + "/authentication/github/callback"
     }, function (accessToken, refreshToken, profile, done) {
         // asynchronous verification, for effect...
         // To keep the example simple, the user's GitHub profile is returned to
@@ -98,7 +99,7 @@ const passportOauth = app => {
     passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: 'https://lazy-devs-backend.onrender.com/authentication/google/callback'
+        callbackURL: config[config.model].domain +'/authentication/google/callback'
     },
         function (accessToken, refreshToken, profile, cb) {
 
