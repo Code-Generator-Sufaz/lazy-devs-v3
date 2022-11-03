@@ -1,11 +1,12 @@
+const config = require('../../config')
+
 function githubCallback (req, res) {
-    const config = require('../../config')
     req.session.user = req.user
-    res.redirect(config[config.model].frontEnd + '/profile');
+    res.redirect(config[config.model].domain + '/profile');
 }
 
 function googleCallback (req, res) {
     req.session.user = req.user
-    res.redirect(config[config.model].frontEnd + '/profile');
+    res.redirect(config[config.model].domain + '/profile');
 }
 module.exports = { githubCallback, googleCallback }

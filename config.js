@@ -4,8 +4,6 @@ const config = {
     dev:{
         domain: "http://localhost:5000",
         frontEnd: "http://localhost:3000"
-        
-
     },
     deploy: {
         domain:"https://lazy-devs.onrender.com",
