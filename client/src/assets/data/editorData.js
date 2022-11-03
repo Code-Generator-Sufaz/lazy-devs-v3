@@ -3,7 +3,7 @@ export const inputTypes = [
   "checkbox",
   "date",
   "email",
-  "file",
+  // "file",
   "number",
   "password",
   "tel",
@@ -19,9 +19,9 @@ export const frontEndComponents = [
 ];
 
 export const backEndSettings = [
-  "session",
-  "jwt",
+  // "session",
+  // "jwt",
   "dotenv",
-  "expressValidator",
+  // "expressValidator",
   "nodemailer",
 ];

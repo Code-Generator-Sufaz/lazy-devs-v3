@@ -45,7 +45,7 @@ const CodeTemplate = ({ temp }) => {
         />
       </CodeblockDiv>
       <CodeblockDiv className={darkTheme ? "dark-theme" : "light-theme"}>
-        <h3>packageJSON</h3>
+        <h3>packageJSON(Backend)</h3>
         <Editor
           height="50vh"
           width="100%"
@@ -56,7 +56,7 @@ const CodeTemplate = ({ temp }) => {
         />
       </CodeblockDiv>
       <CodeblockDiv className={darkTheme ? "dark-theme" : "light-theme"}>
-        <h3>packageJSON</h3>
+        <h3>packageJSON(Fontend)</h3>
         <Editor
           height="50vh"
           width="100%"
@@ -67,13 +67,13 @@ const CodeTemplate = ({ temp }) => {
         />
       </CodeblockDiv>
       <CodeblockDiv className={darkTheme ? "dark-theme" : "light-theme"}>
-        <h3>dev</h3>
+        <h3>dotenv</h3>
         <Editor
           height="50vh"
           width="100%"
           defaultLanguage="python"
           theme="vs-dark"
-          value={temp?.frontEndPackageJSON}
+          value={temp?.backendDotenv}
           options={options}
         />
       </CodeblockDiv>

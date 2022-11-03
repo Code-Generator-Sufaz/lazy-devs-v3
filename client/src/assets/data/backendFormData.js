@@ -1,9 +1,6 @@
 export const backEndFormData = [
-  "expressValidator",
-  "session",
   "dotenv",
-  "jwt",
-  "nodemailer",
+  "nodemailer"
 ];
 
 export const backendTemplates = [
