@@ -10,10 +10,13 @@ export default function AuthContainer({children}) {
 
 
 const Auth = styled.div`
-  width:30%;
+  width:50%;
   background: white;
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
   padding: 1rem;
+  @media (max-width: 900px) {
+    width: 70%;
+  }
 `

@@ -9,6 +9,9 @@ export default function FormContainer({children}) {
 
 const Container = styled.form`
 margin-top: 1rem;
+@media (max-width: 908px) {
+  width: 100%;
+}
   h3 {
     color: tomato;
     font-size: 1rem;

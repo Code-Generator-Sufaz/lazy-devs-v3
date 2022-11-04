@@ -14,6 +14,7 @@ const Container = styled.div`
   justify-content: space-evenly;
 
   @media (max-width: 900px) {
+    width:100%;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
