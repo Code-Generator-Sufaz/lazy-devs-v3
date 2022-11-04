@@ -50,3 +50,9 @@ After you download template zip file.
 {errCode: 18, data: { msg: "wow something wrong" , ...err}, path: '/user/profile'}
 
 { errCode: 33, data: { msg: "you need login first" }, path: 'middleware.auth' }
+
+# some template logic
+- when you want use nodemailer, you must have a input which type == "email".
+- password will always encrypted
+- registrationInputs will be add to Schema except type == "button"
+- if you put nothing in loginInputs, the main input of registrationInputs will be the loginInputs(your first registrationInput will be main input by default)

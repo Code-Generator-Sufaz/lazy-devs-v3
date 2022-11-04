@@ -7,6 +7,11 @@
  */
  const backendPackageJson = (req, file = false, filePath = './test/server/package.json') =>{
 
+  // add bcrypet
+  if(req.body.backend_packages.nodemailer
+    || req.body.registrationInputs.some(x => x.type == "password")
+    ) req.body.backend_packages.bcrypt = true
+
   const newArr = [];
   for (let key in req.body.backend_packages) {
     if (req.body.backend_packages[key]) newArr.push(key);
