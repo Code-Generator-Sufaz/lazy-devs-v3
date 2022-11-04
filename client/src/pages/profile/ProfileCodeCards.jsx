@@ -103,6 +103,10 @@ const ProfileCodeCards = () => {
         .folder(data.data.projectName)
         .folder('server')
         .file('package.json', data.data.backendPackageJSON);
+        zip
+        .folder(data.data.projectName)
+        .folder('server')
+        .file('.env', data.data.backendDotenv);
 
       zip
         .generateAsync({
