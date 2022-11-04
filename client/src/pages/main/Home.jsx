@@ -43,12 +43,13 @@ const BannerContainer = styled.div`
   width: 50%;
   @media (max-width: 900px) {
     text-align: center;
+    width: 100%;
   }
   h1 {
     text-transform: uppercase;
     font-size: 3.5rem;
     @media (max-width: 900px) {
-      font-size: 3rem;
+      font-size: 2.2rem;
     }
     letter-spacing: 2px;
     word-spacing: 1px;

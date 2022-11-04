@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 
 exports.registrationController = async (req, res, next) => {
   const user = req.body;
+  const domain = req.get('origin');
   try {
     const newUser = new User(user);
     //hashing password
@@ -17,7 +18,7 @@ exports.registrationController = async (req, res, next) => {
     newUser.password = hash;
     await newUser.save();
     //sending verification email to user
-    emailSender(newUser.email, newUser._id);
+    emailSender(newUser.email, newUser._id, domain);
     req.session.user = await User.findOne({ email: newUser.email }).select(
       "-password"
     );
@@ -67,6 +68,7 @@ exports.logoutController = async (req, res) => {
 
 exports.emailVerificationController = async (req, res, next) => {
   const id = req.params.id;
+
 
   try {
     const loggedUser = await User.findByIdAndUpdate(

@@ -12,8 +12,11 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  position: relative;
 
   @media (max-width: 900px) {
+    height:140vh;
+    width:100%;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;

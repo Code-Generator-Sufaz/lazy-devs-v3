@@ -151,9 +151,7 @@ function ContextProvider({ children }) {
         open,
         setOpen,
         darkTheme,
-        setDarkTheme,
-        open,
-        setOpen,
+        setDarkTheme
       }}
     >
       {children}

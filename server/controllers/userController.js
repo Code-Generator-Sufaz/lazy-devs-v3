@@ -37,11 +37,13 @@ const userAccountSettingsUpdate = async (req, res, next) => {
 };
 
 const resetController = async (req, res, next) => {
+  const domain = req.get('origin');
+
   const { email } = req.body;
 
   const user = await User.findOne({ email: email });
 
-  resetPasswordMail(email, user.id);
+  resetPasswordMail(email, user.id, domain);
   res.send('Email sent');
 };
 

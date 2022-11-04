@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import GoogleLogo from "../GoogleLogo";
 import {BsGithub} from 'react-icons/bs'
-import {baseUrl} from '../../../assets/api/api'
+// import {baseUrl} from '../../../assets/api/api'
+import config from '../../../config'
 
 
 export default function PassportContainer() {
   return (
     <Passport>
-        <Anchor href={`${baseUrl}/authentication/google`}><GoogleLogo/>Google</Anchor>
-        <Anchor href={`${baseUrl}/authentication/github`}><BsGithub className='github logo'/>GitHub</Anchor>
+        <Anchor href={`${config[config.model].domain}/authentication/google`}><GoogleLogo/>Google</Anchor>
+        <Anchor href={`${config[config.model].domain}/authentication/github`}><BsGithub className='github logo'/>GitHub</Anchor>
     </Passport>
   );
 }
