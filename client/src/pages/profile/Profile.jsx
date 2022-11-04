@@ -1,39 +1,69 @@
-import React, { useContext, useState } from "react";
-import ProfileSidebar from "./ProfileSidebar";
-import styled from "styled-components";
-import CodeTemplate from "../main/mainDashboard/CodeTemplate";
-import { Context } from "../../store/Context";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import React, { useContext, useState, useEffect } from 'react';
+import ProfileSidebar from './ProfileSidebar';
+import styled from 'styled-components';
+import CodeTemplate from '../main/mainDashboard/CodeTemplate';
+import { Context } from '../../store/Context';
+import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 
 const Profile = () => {
   const { profileTemplates, darkTheme } = useContext(Context);
   const [spread, setSpread] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const spreadSidebar = () => {
-    console.log("hey");
     setSpread((pre) => !pre);
   };
-  const styles = { width: 20 + "rem", opacity: 1 };
-  const templatesStyle = { left: 20 + "rem" };
+  useEffect(() => {
+    const updateWindowDimensions = () => {
+      const newWidth = window.innerWidth;
+      setScreenWidth(newWidth);
+      console.log('updating width');
+    };
+
+    window.addEventListener('resize', updateWindowDimensions);
+
+    return () => window.removeEventListener('resize', updateWindowDimensions);
+  }, []);
 
   return (
     <>
       <ProfilePage>
-        <SpreadButton
-          onClick={spreadSidebar}
-          style={spread ? { left: "18rem" } : {}}
-          className={darkTheme ? "dark-theme" : "light-theme"}
-        >
-          {!spread ? <IoIosArrowForward /> : <IoIosArrowBack />}
-        </SpreadButton>
-        <Sidebar
-          className={darkTheme ? "dark-theme" : "light-theme"}
-          style={spread ? styles : {}}
-        >
-          <ProfileSidebar />
-        </Sidebar>
-        <TemplatesContainer style={spread ? templatesStyle : {}}>
-          <CodeTemplate id="codeTemplate" temp={profileTemplates} />
-        </TemplatesContainer>
+        {!spread && (
+          <Sidebar className={darkTheme ? 'dark-theme' : 'light-theme'}>
+            <ProfileSidebar />
+            {profileTemplates?.backend && (
+              <SpreadButton
+                onClick={spreadSidebar}
+                className={darkTheme ? 'dark-theme' : 'light-theme'}
+              >
+                {!spread ? <IoIosArrowForward /> : ''}
+              </SpreadButton>
+            )}
+          </Sidebar>
+        )}
+        {spread || screenWidth > 768 ? (
+          <TemplatesContainer
+            style={!spread ? { display: 'block', width: '100%' } : {}}
+          >
+            {spread ? (
+              <CloseButton
+                onClick={spreadSidebar}
+                className={darkTheme ? 'dark-theme' : 'light-theme'}
+              >
+                <IoIosArrowBack />
+              </CloseButton>
+            ) : (
+              <></>
+            )}
+
+            {profileTemplates?.backend ? (
+              <CodeTemplate id='codeTemplate' temp={profileTemplates} />
+            ) : (
+              <></>
+            )}
+          </TemplatesContainer>
+        ) : (
+          <></>
+        )}
       </ProfilePage>
     </>
   );
@@ -41,52 +71,52 @@ const Profile = () => {
 export default Profile;
 
 const ProfilePage = styled.section`
-  display: grid;
-  height: 100%;
-  grid-template-columns: 20rem 1fr;
-  grid-template-areas: "sidebar code";
+  display: flex;
+  overflow-x: hidden;
+  width: 100%;
   position: relative;
 `;
 
 const Sidebar = styled.div`
-  @media only screen and (max-width: 900px) {
-    width: 0px;
-    transition: all 0.5s;
-    overflow: hidden;
-    position: absolute;
-    overflow-y: hidden;
-    opacity: 0;
-    height: auto;
+  align-self: flex-start;
+  flex-basis: 20rem;
+  width: 100%;
+  transition: width 1s;
+
+  @media screen and (max-width: 768px) {
+    flex: 1;
+    width: 100%;
   }
 `;
 const TemplatesContainer = styled.div`
-  @media only screen and (max-width: 900px) {
-    position: absolute;
-    left: 20px;
-    right: 0;
-    top: 0;
-    transition: left 0.5s;
+  flex: 1;
+  position: relative;
+  transition: width 1s;
+  @media screen and (max-width: 768px) {
+    width: 0;
   }
 `;
 
 const SpreadButton = styled.button`
-  z-index: 12222;
-  position: fixed;
-  left: 0;
-  background: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  animation: pulse 1s infinite;
   border: none;
-  transition: left 0.5s;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
-  &.light-mode {
-    color: black;
+  font-size: 3rem;
+  @keyframes pulse {
+    from {
+      transform: translateX(-10px);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
-  &:hover {
-    color: #fca311;
-    transform: scale(1.1);
-  }
-  @media only screen and (min-width: 900px) {
-    display: none;
-  }
+`;
+const CloseButton = styled.button`
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: none;
+  font-size: 3rem;
 `;

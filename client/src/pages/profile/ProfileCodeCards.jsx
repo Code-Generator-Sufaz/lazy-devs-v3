@@ -113,7 +113,7 @@ export default ProfileCodeCards;
 const ProfileCodeCardsWindow = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 17rem;
   span {
     font-size: 14px;
     font-style: italic;
@@ -128,7 +128,7 @@ const CodeCardBox = styled.div`
   align-items: center;
   padding: 0.5rem;
   margin-top: 1rem;
-  width: 90%;
+  width: 100%;
   height: 3rem;
   background: #3cc6ad;
   border-radius: 0.5rem;

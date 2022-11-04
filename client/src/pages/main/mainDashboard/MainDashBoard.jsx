@@ -1,50 +1,74 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../../../store/Context";
-import Alert from "../../../components/UI/Alert";
-import Editor from "./EditorForm";
-import CodeTemplate from "./CodeTemplate";
-import styled from "styled-components";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import React, { useContext, useState, useEffect } from 'react';
+import { Context } from '../../../store/Context';
+import Alert from '../../../components/UI/Alert';
+import Editor from './EditorForm';
+import CodeTemplate from './CodeTemplate';
+import styled from 'styled-components';
+import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 
 export default function MainDashBoard() {
   const { templates, darkTheme } = useContext(Context);
 
-  const [spread, setSpread] = useState(true);
+  const [spread, setSpread] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const spreadSidebar = () => {
-    console.log("hey");
     setSpread((pre) => !pre);
   };
-  const styles = { width: 20 + "rem", opacity: 1 };
-  const templatesStyle = { left: 20 + "rem" };
+  useEffect(() => {
+    const updateWindowDimensions = () => {
+      const newWidth = window.innerWidth;
+      setScreenWidth(newWidth);
+      console.log('updating width');
+    };
+
+    window.addEventListener('resize', updateWindowDimensions);
+
+    return () => window.removeEventListener('resize', updateWindowDimensions);
+  }, []);
   return (
     <DashBoardContainer>
       <MainContentContainer>
-        <SpreadButton
-          onClick={spreadSidebar}
-          style={spread ? { left: "18rem" } : {}}
-          className={darkTheme ? "dark-theme" : "light-theme"}
-        >
-          {!spread ? <IoIosArrowForward /> : <IoIosArrowBack />}
-        </SpreadButton>
-        <EditorDiv
-          style={spread ? styles : {}}
-          className={darkTheme ? "dark-theme" : "light-theme"}
-        >
-          <Editor id="editor" />
-        </EditorDiv>
-        <TemplatesDiv
-          style={spread ? templatesStyle : {}}
-          className={darkTheme ? "dark-theme" : "light-theme"}
-        >
-          {templates?.backend ? (
-            <CodeTemplate id="codeTemplate" temp={templates} />
-          ) : (
-            <></>
-          )}
-        </TemplatesDiv>
+        {!spread && (
+          <EditorDiv
+            className={darkTheme ? 'dark-theme' : 'light-theme'}
+            style={{ position: 'relative' }}
+          >
+            <Editor id='editor' />
+            {!spread && screenWidth < 768 && (
+              <SpreadButton
+                onClick={spreadSidebar}
+                className={darkTheme ? 'dark-theme' : 'light-theme'}
+              >
+                <IoIosArrowForward />
+              </SpreadButton>
+            )}
+          </EditorDiv>
+        )}
+        {spread || screenWidth > 768 ? (
+          <TemplatesDiv
+            className={darkTheme ? 'dark-theme' : 'light-theme'}
+            style={!spread ? { display: 'block', width: '100%' } : {}}
+          >
+            {spread && (
+              <CloseButton
+                onClick={spreadSidebar}
+                className={darkTheme ? 'dark-theme' : 'light-theme'}
+              >
+                <IoIosArrowBack />
+              </CloseButton>
+            )}
+            {templates?.backend ? (
+              <CodeTemplate id='codeTemplate' temp={templates} />
+            ) : (
+              <></>
+            )}
+          </TemplatesDiv>
+        ) : (
+          <></>
+        )}
       </MainContentContainer>
       <Alert>
-        {templates ? "Template successfully saved!" : "Template already exists"}
+        {templates ? 'Template successfully saved!' : 'Template already exists'}
       </Alert>
     </DashBoardContainer>
   );
@@ -52,41 +76,32 @@ export default function MainDashBoard() {
 
 // ## STYLED COMPONENTS ##
 
-const DashBoardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
+const DashBoardContainer = styled.div``;
 
 const MainContentContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  overflow-x: hidden;
+  width: 100%;
   position: relative;
 `;
 
 const EditorDiv = styled.div`
-  flex-basis: 40%;
-  min-height: 100vh;
+  align-self: flex-start;
+  flex-basis: 320px;
+  transition: width 1s;
   border-right: 1px solid white;
-  overflow: hidden;
-  &.light-theme {
-    border-right: 1px solid var(--backgroundColor);
-  }
-  @media only screen and (max-width: 900px) {
-    transition: all 0.5s;
-    overflow-y: hidden;
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    height: 100%;
+  @media screen and (max-width: 768px) {
+    flex: 1;
+    width: 100%;
+    & input,
+    & select {
+      width: 100%;
+    }
   }
 `;
 
 const TemplatesDiv = styled.div`
-  flex-basis: 60%;
+  flex: 1;
   &.dark-theme {
     background-color: var(--backgroundColor);
     color: var(--textColor);
@@ -95,33 +110,29 @@ const TemplatesDiv = styled.div`
     background-color: var(--textColor);
     color: var(--textColor);
   }
-  @media only screen and (max-width: 900px) {
-    position: absolute;
-    left: 0%;
-    right: 0%;
-    top: 8%;
-    transition: left 0.5s;
-  }
 `;
 
 const SpreadButton = styled.button`
-  z-index: 12222;
-  position: fixed;
-  left: 0;
-  background: transparent;
-  border: none;
-  transition: left 0.5s;
-  font-size: 2rem;
+  position: absolute;
+  top: 0;
+  right: 0;
   color: white;
-  cursor: pointer;
-  &.light-theme {
-    color: var(--backgroundColor);
+  animation: pulse 1s infinite;
+  border: none;
+  font-size: 3rem;
+  @keyframes pulse {
+    from {
+      transform: translateX(-10px);
+    }
+    to {
+      transform: translateX(10px);
+    }
   }
-  &:hover {
-    color: #fca311;
-    transform: scale(1.1);
-  }
-  @media only screen and (min-width: 900px) {
-    display: none;
-  }
+`;
+const CloseButton = styled.button`
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: none;
+  font-size: 3rem;
 `;
