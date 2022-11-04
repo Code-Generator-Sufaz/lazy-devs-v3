@@ -21,10 +21,10 @@ const CodeTemplate = ({ temp }) => {
     // <pre key={i}>
     <Main className={darkTheme ? "dark-theme" : "light-theme"}>
       <CodeblockDiv className={darkTheme ? "dark-theme" : "light-theme"}>
-        <h3>Backend</h3>
+        <h3>Backend - server/server.js</h3>
 
         <Editor
-          height="50vh"
+          height="60vh"
           width="100%"
           defaultLanguage="javascript"
           theme={darkTheme ? "vs-dark" : "vs-light"}
@@ -34,9 +34,9 @@ const CodeTemplate = ({ temp }) => {
         />
       </CodeblockDiv>
       <CodeblockDiv className={darkTheme ? "dark-theme" : "light-theme"}>
-        <h3>Frontend</h3>
+        <h3>Frontend - client/src/App.js</h3>
         <Editor
-          height="50vh"
+          height="60vh"
           width="100%"
           defaultLanguage="javascript"
           theme={darkTheme ? "vs-dark" : "vs-light"}
@@ -45,9 +45,9 @@ const CodeTemplate = ({ temp }) => {
         />
       </CodeblockDiv>
       <CodeblockDiv className={darkTheme ? "dark-theme" : "light-theme"}>
-        <h3>packageJSON</h3>
+        <h3>Backend - server/package.json</h3>
         <Editor
-          height="50vh"
+          height="40vh"
           width="100%"
           defaultLanguage="json"
           theme={darkTheme ? "vs-dark" : "vs-light"}
@@ -56,9 +56,9 @@ const CodeTemplate = ({ temp }) => {
         />
       </CodeblockDiv>
       <CodeblockDiv className={darkTheme ? "dark-theme" : "light-theme"}>
-        <h3>packageJSON</h3>
+        <h3>Fontend - client/package.json</h3>
         <Editor
-          height="50vh"
+          height="40vh"
           width="100%"
           defaultLanguage="json"
           theme={darkTheme ? "vs-dark" : "vs-light"}
@@ -67,13 +67,13 @@ const CodeTemplate = ({ temp }) => {
         />
       </CodeblockDiv>
       <CodeblockDiv className={darkTheme ? "dark-theme" : "light-theme"}>
-        <h3>dev</h3>
+        <h3>Backend - server/.env</h3>
         <Editor
-          height="50vh"
+          height="30vh"
           width="100%"
           defaultLanguage="python"
           theme="vs-dark"
-          value={temp?.frontEndPackageJSON}
+          value={temp?.backendDotenv}
           options={options}
         />
       </CodeblockDiv>

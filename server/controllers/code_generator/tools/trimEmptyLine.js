@@ -9,7 +9,8 @@
     return string
            .split("\n")
            .map(x=>{
-                if(x.split('').every(c=>c==" ")) x=x.trim() // cut the line with all empty space
+                if(x.trim()==',') x=" "
+                if(x.split('').every(c=>c==" ")) x=x.trim() // cut the line with all empty space           
                 if(x[0] == '/' && x[1] =='/') x="\n"+x;
                 return x;
               })
