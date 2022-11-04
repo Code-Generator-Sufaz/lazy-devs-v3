@@ -12,7 +12,33 @@ import { baseUrl } from '../../assets/api/api';
 const ProfileCodeCards = () => {
   const [cards, setCards] = useState([]);
   const { profileTemplates } = useContext(Context);
-  const { setProfileTemplates } = useContext(Context);
+  const { setProfileTemplates,
+          finalDataToSend 
+  } = useContext(Context);
+
+  // set root json filev
+  const rootJson = `{
+    "name": "sufaz",
+    "version": "1.0.0",
+    "description": "lazy devs template",
+    "main": "",
+    "scripts": {
+      "start": "concurrently \\"npm run server\\" \\"npm run client\\"",
+      "install_both": "concurrently \\"npm run i_server\\" \\"npm run i_client\\"",
+      "i_server": "npm install --prefix server",
+      "i_client": "npm install --prefix client",
+      "server": "npm start --prefix server",
+      "client": "npm start --prefix client"
+    },
+    "author": "sufaz",
+    "license": "ISC",
+    "dependencies": {
+      "concurrently": "*"
+    }
+  }`
+
+
+
   useEffect(() => {
     (async () => {
       try {
@@ -46,13 +72,27 @@ const ProfileCodeCards = () => {
       const zip = new JSZip();
       console.log(data.data);
       zip
+      .folder(data.data.projectName)
+      .file('package.json', rootJson)
+      zip
         .folder(data.data.projectName)
         .folder('client')
-        .file('app.js', data.data.frontend);
+        .folder('src')
+        .file('App.js', data.data.frontend);
+        zip
+        .folder(data.data.projectName)
+        .folder('client')
+        .folder('src')
+        .file('index.js', indexJs);
+        zip
+        .folder(data.data.projectName)
+        .folder('client')
+        .folder('public')
+        .file('index.html', indexHtml);
       zip
         .folder(data.data.projectName)
         .folder('server')
-        .file('index.js', data.data.backend);
+        .file('server.js', data.data.backend);
 
       zip
         .folder(data.data.projectName)
@@ -173,3 +213,68 @@ const CreatedAt = styled.span`
   margin-top: 0.3rem;
   font-size: 0.5rem;
 `;
+
+
+const indexHtml = `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the \`public\` folder during the build.
+      Only files inside the \`public\` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running \`npm run build\`.
+    -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>lazy devs</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run \`npm start\` or \`yarn start\`.
+      To create a production bundle, use \`npm run build\` or \`yarn build\`.
+    -->
+  </body>
+</html>
+`;
+
+  const indexJs = `import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+`;
+
+

@@ -16,6 +16,8 @@ function ContextProvider({ children }) {
   const [open, setOpen] = useState(false);
 
   // Input States
+  // this state is to get finalDataToSend
+  const [finalDataToSend, setFinalDataToSend] = useState({})
   const [inputError, setInputError] = useState("");
   const [input, setInput] = useState({ required: false, unique: false });
   const [arrOfPackages, setArrOfPackages] = useState([]);
@@ -151,7 +153,9 @@ function ContextProvider({ children }) {
         open,
         setOpen,
         darkTheme,
-        setDarkTheme
+        setDarkTheme,
+        finalDataToSend, 
+        setFinalDataToSend
       }}
     >
       {children}
