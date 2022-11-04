@@ -16,11 +16,12 @@ const ProfileCodeCards = () => {
           finalDataToSend 
   } = useContext(Context);
 
+  console.log(finalDataToSend)
   // set root json filev
   const rootJson = `{
-    "name": "sufaz",
+    "name": "lazy_devs",
     "version": "1.0.0",
-    "description": "lazy devs template",
+    "description": "user authentication template",
     "main": "",
     "scripts": {
       "start": "concurrently \\"npm run server\\" \\"npm run client\\"",
@@ -31,7 +32,7 @@ const ProfileCodeCards = () => {
       "client": "npm start --prefix client"
     },
     "author": "sufaz",
-    "license": "ISC",
+    "license": "MIT",
     "dependencies": {
       "concurrently": "*"
     }
