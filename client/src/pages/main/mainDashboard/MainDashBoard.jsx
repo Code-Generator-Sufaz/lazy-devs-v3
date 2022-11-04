@@ -29,11 +29,7 @@ export default function MainDashBoard() {
     <DashBoardContainer>
       <MainContentContainer>
         {!spread && (
-          <EditorDiv
-            className={darkTheme ? 'dark-theme' : 'light-theme'}
-            style={{ position: 'relative' }}
-          >
-            <Editor id='editor' />
+          <EditorDiv className={darkTheme ? 'dark-theme' : 'light-theme'}>
             {!spread && screenWidth < 768 && (
               <SpreadButton
                 onClick={spreadSidebar}
@@ -42,6 +38,7 @@ export default function MainDashBoard() {
                 <IoIosArrowForward />
               </SpreadButton>
             )}
+            <Editor id='editor' />
           </EditorDiv>
         )}
         {spread || screenWidth > 768 ? (
@@ -90,7 +87,9 @@ const EditorDiv = styled.div`
   flex-basis: 320px;
   transition: width 1s;
   border-right: 1px solid white;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 900px) {
+    position: relative;
+    background-color: red;
     flex: 1;
     width: 100%;
     & input,
@@ -113,19 +112,20 @@ const TemplatesDiv = styled.div`
 `;
 
 const SpreadButton = styled.button`
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 50%;
   right: 0;
   color: white;
   animation: pulse 1s infinite;
   border: none;
+  background: transparent;
   font-size: 3rem;
   @keyframes pulse {
     from {
       transform: translateX(-10px);
     }
     to {
-      transform: translateX(10px);
+      transform: translateX(0);
     }
   }
 `;
