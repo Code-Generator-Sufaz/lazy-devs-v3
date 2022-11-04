@@ -1,18 +1,18 @@
-import { useContext } from "react";
-import { Context } from "../../../../store/Context";
-import styled from "styled-components";
-import { backendTemplates } from "../../../../assets/data/backendFormData";
+import { useContext } from 'react';
+import { Context } from '../../../../store/Context';
+import styled from 'styled-components';
+import { backendTemplates } from '../../../../assets/data/backendFormData';
 import {
   Input,
   Slider,
-} from "../codeDataProviderSpecialStyles/CheckboxSwitchStyles";
+} from '../codeDataProviderSpecialStyles/CheckboxSwitchStyles';
 
 export default function MainTemplateToChoseForm() {
   const { mainTemplateSelectedRadio, setMainTemplateSelectedRadio } =
     useContext(Context);
 
   return (
-    <Form className="editor-on">
+    <Form className='editor-on'>
       <InnerFormWrapper>
         {backendTemplates.map((el, i) => {
           return (
@@ -22,8 +22,8 @@ export default function MainTemplateToChoseForm() {
                   <span> WANT TO USE {el.name} ?</span>
 
                   <Input
-                    type="radio"
-                    name="name"
+                    type='radio'
+                    name='name'
                     value={el.template}
                     checked={mainTemplateSelectedRadio === el.template}
                   />
@@ -63,7 +63,7 @@ const EditorInputWrapper = styled.div`
 `;
 
 const InputWrapper = styled.label`
-  width: 90%;
+  width: 320px;
   div {
     width: 100%;
     display: flex;

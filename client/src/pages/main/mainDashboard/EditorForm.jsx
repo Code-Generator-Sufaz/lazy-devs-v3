@@ -387,7 +387,7 @@ const ButtonSubmit = styled.button`
 const Button = styled.button`
   margin-top: 1rem;
   background-color: #fca311;
-  width: 15rem;
+  width: 300px;
   height: 1.3rem;
   margin-left: 1rem;
   border: 1px solid transparent;
