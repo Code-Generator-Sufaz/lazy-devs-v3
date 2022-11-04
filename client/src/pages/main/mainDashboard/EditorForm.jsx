@@ -1,19 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import axios from 'axios';
-import styled from 'styled-components';
-import { Context } from '../../../store/Context.js';
-import InputsForm from './templateEditorForms/InputsForm';
-import InputsSyntaxDisplay from './templateEditorForms/InputsSyntaxDisplay';
-import BackendForm from './templateEditorForms/BackendForm';
-import MainTemplateToChooseForm from './templateEditorForms/MainTemplateToChooseForm';
-import SaveTemplateToDB from './templateEditorForms/SaveTemplateToDB';
-import Modal from '../../../components/UI/Modal.jsx';
-import ServerInitForm from './templateEditorForms/ServerInitForm';
-import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
-import { TbHandClick } from 'react-icons/tb';
-import { AiOutlineFileDone } from 'react-icons/ai';
-import { baseUrl } from '../../../assets/api/api.js';
+import React, { useContext, useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
+import styled from "styled-components";
+import { Context } from "../../../store/Context.js";
+import InputsForm from "./templateEditorForms/InputsForm";
+import InputsSyntaxDisplay from "./templateEditorForms/InputsSyntaxDisplay";
+import BackendForm from "./templateEditorForms/BackendForm";
+import MainTemplateToChooseForm from "./templateEditorForms/MainTemplateToChooseForm";
+import SaveTemplateToDB from "./templateEditorForms/SaveTemplateToDB";
+import Modal from "../../../components/UI/Modal.jsx";
+import ServerInitForm from "./templateEditorForms/ServerInitForm";
+import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+import { TbHandClick } from "react-icons/tb";
+import { AiOutlineFileDone } from "react-icons/ai";
+import { baseUrl } from "../../../assets/api/api.js";
 
 export default function InputForm() {
   const {
@@ -51,7 +51,7 @@ export default function InputForm() {
     setOpen,
   } = useContext(Context);
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   // SUBMIT DATA TO BACKEND FUNCTION
 
@@ -125,18 +125,18 @@ export default function InputForm() {
   // STORING THE ARRAYS OF INPUTS TO LOCAL STORAGE :
 
   useEffect(() => {
-    localStorage.setItem('inputs', JSON.stringify(arrOfInputs));
+    localStorage.setItem("inputs", JSON.stringify(arrOfInputs));
   }, [arrOfInputs]);
 
   useEffect(() => {
     localStorage.setItem(
-      'registrationInputs',
+      "registrationInputs",
       JSON.stringify(arrOfRegistrationInputs)
     );
   }, [arrOfRegistrationInputs]);
 
   useEffect(() => {
-    localStorage.setItem('loginInputs', JSON.stringify(arrOfLoginInputs));
+    localStorage.setItem("loginInputs", JSON.stringify(arrOfLoginInputs));
   }, [arrOfLoginInputs]);
 
   // console.log('1111', templates, isLoggedIn);
@@ -145,85 +145,85 @@ export default function InputForm() {
     <>
       <EditorContainer>
         <div
-          data-tour='first-step'
-          style={{ borderRadius: '.5rem' }}
-          className='editor-on'
+          data-tour="first-step"
+          style={{ borderRadius: ".5rem" }}
+          className="editor-on"
         >
           <Button
             onClick={() => {
               setInputsEditorOpen(!inputsEditorOpen);
             }}
-            className={darkTheme ? 'dark-mode' : 'light-mode'}
+            className={darkTheme ? "dark-mode" : "light-mode"}
           >
             <div>
-              <span>INPUTS EDITOR</span>{' '}
+              <span>INPUTS EDITOR</span>{" "}
               {inputsEditorOpen ? <ArrowUp /> : <ArrowDown />}
             </div>
           </Button>
-          {inputsEditorOpen && <InputsForm className='one' />}
+          {inputsEditorOpen && <InputsForm className="one" />}
         </div>
-        <div data-tour='second-step' className='editor-on'>
+        <div data-tour="second-step" className="editor-on">
           <Button
             onClick={() => {
               setInputsDisplayOpen(!inputsDisplayOpen);
             }}
-            className={darkTheme ? 'dark-mode' : 'light-mode'}
+            className={darkTheme ? "dark-mode" : "light-mode"}
           >
             <div>
-              <span>EDITED INPUTS</span>{' '}
+              <span>EDITED INPUTS</span>{" "}
               {inputsDisplayOpen ? <ArrowUp /> : <ArrowDown />}
             </div>
           </Button>
-          {inputsDisplayOpen && <InputsSyntaxDisplay className='two' />}
+          {inputsDisplayOpen && <InputsSyntaxDisplay className="two" />}
         </div>
-        <div data-tour='third-step' className='editor-on'>
+        <div data-tour="third-step" className="editor-on">
           <Button
             onClick={() => {
               setFrontendEditorOpen(!frontendEditorOpen);
             }}
-            className={darkTheme ? 'dark-mode' : 'light-mode'}
+            className={darkTheme ? "dark-mode" : "light-mode"}
           >
             <div>
               <span>AUTH METHODS</span>
               {frontendEditorOpen ? <ArrowUp /> : <ArrowDown />}
             </div>
           </Button>
-          {frontendEditorOpen && <MainTemplateToChooseForm className='four' />}
+          {frontendEditorOpen && <MainTemplateToChooseForm className="four" />}
         </div>
-        <div data-tour='fourth-step' className='editor-on'>
+        <div data-tour="fourth-step" className="editor-on">
           <Button
             onClick={() => {
               setBackendEditorOpen(!backendEditorOpen);
             }}
-            className={darkTheme ? 'dark-mode' : 'light-mode'}
+            className={darkTheme ? "dark-mode" : "light-mode"}
           >
             <div>
-              <span>BACKEND PACKAGES</span>{' '}
+              <span>BACKEND PACKAGES</span>{" "}
               {backendEditorOpen ? <ArrowUp /> : <ArrowDown />}
             </div>
           </Button>
-          {backendEditorOpen && <BackendForm className='three' />}
+          {backendEditorOpen && <BackendForm className="three" />}
         </div>
-        <div className='editor-on'>
+        <div className="editor-on">
           <Button
             onClick={() => {
               setServerInitFormOpen(!serverInitFormOpen);
             }}
-            className={darkTheme ? 'dark-mode' : 'light-mode'}
+            className={darkTheme ? "dark-mode" : "light-mode"}
           >
             <div>
-              <span>SERVER INIT EDITOR </span>{' '}
+              <span>SERVER INIT EDITOR </span>{" "}
               {serverInitFormOpen ? <ArrowUp /> : <ArrowDown />}
             </div>
           </Button>
-          {serverInitFormOpen && <ServerInitForm className='two' />}
+          {serverInitFormOpen && <ServerInitForm className="two" />}
         </div>
         <div>
           {/* CREATE TEMPLATE BUTTON */}
           {arrOfInputs.length > 0 ? (
             <ButtonSubmit
               onClick={sendToBackEndHandler}
-              className={darkTheme ? 'dark-mode' : 'light-mode'}
+              className={darkTheme ? "dark-mode" : "light-mode"}
             >
               CREATE TEMPLATE
             </ButtonSubmit>
@@ -236,17 +236,17 @@ export default function InputForm() {
           {isLoggedIn ? (
             templates?.backend ? (
               <SaveTemplateToDB
-                className={darkTheme ? 'dark-mode' : 'light-mode'}
+                className={darkTheme ? "dark-mode" : "light-mode"}
               />
             ) : (
               <></>
             )
           ) : (
             <Navlink
-              to='/login'
-              className={darkTheme ? 'dark-mode' : 'light-mode'}
+              to="/login"
+              className={darkTheme ? "dark-mode" : "light-mode"}
             >
-              {' '}
+              {" "}
               <span> SAVE? CLICK HERE </span> <Save />
             </Navlink>
           )}
@@ -267,11 +267,11 @@ export default function InputForm() {
       </EditorContainer>
       {openModal && (
         <Modal>
-          <StyledModal className={darkTheme ? 'dark-mode' : 'light-mode'}>
+          <StyledModal className={darkTheme ? "dark-mode" : "light-mode"}>
             <div>
-              <label htmlFor=''>Select a project Name:</label>
+              <label htmlFor="">Select a project Name:</label>
               <input
-                type='text'
+                type="text"
                 onChange={(e) => setProjectName(e.target.value)}
               />
             </div>
@@ -292,7 +292,6 @@ const StyledModal = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #0f0c29;
   height: 100%;
   width: 100%;
   color: white;
@@ -329,16 +328,17 @@ const EditorContainer = styled.div`
   min-width: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 2rem auto;
+  margin-right: 1rem;
   div {
     flex-basis: 100%;
   }
-  @media (max-width: 900px) {
+  @media (min-width: 900px) {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     div {
-      flex-basis: 100%;
+      width: 100%;
     }
   }
 `;

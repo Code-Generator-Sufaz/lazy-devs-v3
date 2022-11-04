@@ -227,9 +227,10 @@ const UlWrapperDiv = styled.div`
 const UL = styled.ul`
   margin: 0;
   padding: 0;
-  padding-left: 1rem;
   display: flex;
   flex-direction: column;
+
+  justify-content: center;
   width: 100%;
 `;
 
@@ -238,7 +239,7 @@ const LI = styled.li`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
+  margin: 1rem ;
   width: 90%;
   height: auto;
   color: white;
