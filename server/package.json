@@ -4,7 +4,7 @@
   "description": "Creating authentication form for developers",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js --ignore ./controllers/codeTemplates/"
+    "start": "nodemon server.js --ignore ./controllers/codeTemplates/"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
     "bcrypt": "^5.0.1",
     "body-parser": "^1.20.1",
     "cloudinary": "^1.32.0",
+    "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

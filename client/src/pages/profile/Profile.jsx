@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
-import ProfileSidebar from './ProfileSidebar';
-import styled from 'styled-components';
-import CodeTemplate from '../main/mainDashboard/CodeTemplate';
-import { Context } from '../../store/Context';
-import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
+import React, { useContext, useState, useEffect } from "react";
+import ProfileSidebar from "./ProfileSidebar";
+import styled from "styled-components";
+import CodeTemplate from "../main/mainDashboard/CodeTemplate";
+import { Context } from "../../store/Context";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const Profile = () => {
   const { profileTemplates, darkTheme } = useContext(Context);
@@ -16,47 +16,48 @@ const Profile = () => {
     const updateWindowDimensions = () => {
       const newWidth = window.innerWidth;
       setScreenWidth(newWidth);
-      console.log('updating width');
+      console.log("updating width");
     };
 
-    window.addEventListener('resize', updateWindowDimensions);
+    window.addEventListener("resize", updateWindowDimensions);
 
-    return () => window.removeEventListener('resize', updateWindowDimensions);
+    return () => window.removeEventListener("resize", updateWindowDimensions);
   }, []);
 
   return (
     <>
       <ProfilePage>
         {!spread && (
-          <Sidebar className={darkTheme ? 'dark-theme' : 'light-theme'}>
+          <Sidebar className={darkTheme ? "dark-theme" : "light-theme"}>
             <ProfileSidebar />
             {profileTemplates?.backend && (
               <SpreadButton
                 onClick={spreadSidebar}
-                className={darkTheme ? 'dark-theme' : 'light-theme'}
+                className={darkTheme ? "dark-theme" : "light-theme"}
               >
-                {!spread ? <IoIosArrowForward /> : ''}
+                {!spread ? <IoIosArrowForward /> : ""}
               </SpreadButton>
             )}
           </Sidebar>
         )}
         {spread || screenWidth > 768 ? (
           <TemplatesContainer
-            style={!spread ? { display: 'block', width: '100%' } : {}}
+            style={!spread ? { display: "block", width: "100%" } : {}}
           >
             {spread ? (
-              <CloseButton
+              <SpreadButton
+                style={{ left: "0", right: "100%" }}
                 onClick={spreadSidebar}
-                className={darkTheme ? 'dark-theme' : 'light-theme'}
+                className={darkTheme ? "dark-theme" : "light-theme"}
               >
                 <IoIosArrowBack />
-              </CloseButton>
+              </SpreadButton>
             ) : (
               <></>
             )}
 
             {profileTemplates?.backend ? (
-              <CodeTemplate id='codeTemplate' temp={profileTemplates} />
+              <CodeTemplate id="codeTemplate" temp={profileTemplates} />
             ) : (
               <></>
             )}
@@ -82,6 +83,7 @@ const Sidebar = styled.div`
   flex-basis: 20rem;
   width: 100%;
   transition: width 1s;
+  position: relative;
 
   @media screen and (max-width: 768px) {
     flex: 1;
@@ -98,8 +100,8 @@ const TemplatesContainer = styled.div`
 `;
 
 const SpreadButton = styled.button`
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 50%;
   right: 0;
   animation: pulse 1s infinite;
   border: none;

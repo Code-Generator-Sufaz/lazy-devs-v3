@@ -14,7 +14,7 @@
     PORT=${req.body.port}
     
     # mongoDB link default localhost
-    MONGODB=${req.body.mongodbURI}/${req.body.project_name}
+    MONGODB=${req.body.mongodbURI}/${req.body.project_name.split(' ').join('_')}
     
     ${req.body.backend_packages.nodemailer? `# email smtp user default mailtrap 
     EMAIL_USER=${req.body.nodemailerSetting?.user ? req.body.nodemailerSetting.user  : `'This setting for Nodemailer is required'`} 
@@ -22,7 +22,7 @@
     # email smtp pass default mailtrap 
     EMAIL_PASS=${req.body.nodemailerSetting?.pass ?  req.body.nodemailerSetting.pass : `'This setting for Nodemailer is required'`} 
     
-    SENDER=${req.body.nodemailerSetting?.senderEmail ? req.body.nodemailerSetting.senderEmail  : `'This setting for Nodemailer is required'`}` : null}
+    SENDER=${req.body.nodemailerSetting?.senderEmail ? req.body.nodemailerSetting.senderEmail  : `'This setting for Nodemailer is required'`}` : ''}
     
     
     # secret key for keeping secret

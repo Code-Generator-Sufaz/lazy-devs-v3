@@ -29,33 +29,35 @@ export default function MainDashBoard() {
     <DashBoardContainer>
       <MainContentContainer>
         {!spread && (
-          <EditorDiv className={darkTheme ? 'dark-theme' : 'light-theme'}>
-            {!spread && screenWidth < 768 && (
+          <EditorDiv className={darkTheme ? "dark-theme" : "light-theme"}>
+            {templates?.backend && !spread && screenWidth < 900 && (
               <SpreadButton
                 onClick={spreadSidebar}
-                className={darkTheme ? 'dark-theme' : 'light-theme'}
+                className={darkTheme ? "dark-theme" : "light-theme"}
               >
-                <IoIosArrowForward />
+                {spread ? <IoIosArrowBack /> : <IoIosArrowForward />}{" "}
               </SpreadButton>
             )}
-            <Editor id='editor' />
+            <Editor id="editor" />
           </EditorDiv>
         )}
-        {spread || screenWidth > 768 ? (
+        {spread || screenWidth > 900 ? (
           <TemplatesDiv
-            className={darkTheme ? 'dark-theme' : 'light-theme'}
-            style={!spread ? { display: 'block', width: '100%' } : {}}
+            className={darkTheme ? "dark-theme" : "light-theme"}
+            style={!spread ? { display: "block", width: "100%" } : {}}
           >
             {spread && (
-              <CloseButton
+              <SpreadButton
                 onClick={spreadSidebar}
-                className={darkTheme ? 'dark-theme' : 'light-theme'}
+                className={darkTheme ? "dark-theme" : "light-theme"}
+                style={{ left: "0", right: "100%" }}
               >
-                <IoIosArrowBack />
-              </CloseButton>
+                {" "}
+                {spread ? <IoIosArrowBack /> : <IoIosArrowForward />}
+              </SpreadButton>
             )}
             {templates?.backend ? (
-              <CodeTemplate id='codeTemplate' temp={templates} />
+              <CodeTemplate id="codeTemplate" temp={templates} />
             ) : (
               <></>
             )}
@@ -69,11 +71,19 @@ export default function MainDashBoard() {
       </Alert>
     </DashBoardContainer>
   );
+  // {spread && (
+  //   <CloseButton
+  //     onClick={spreadSidebar}
+  //     className={darkTheme ? "dark-theme" : "light-theme"}
+  //   ></CloseButton>
+  // )}
 }
 
 // ## STYLED COMPONENTS ##
 
-const DashBoardContainer = styled.div``;
+const DashBoardContainer = styled.div`
+  position: relative;
+`;
 
 const MainContentContainer = styled.div`
   display: flex;
@@ -90,6 +100,9 @@ const EditorDiv = styled.div`
   @media screen and (max-width: 900px) {
     position: relative;
     background-color: red;
+  @media screen and (max-width: 900px) {
+    border-right: none;
+    position: relative;
     flex: 1;
     width: 100%;
     & input,
@@ -100,6 +113,7 @@ const EditorDiv = styled.div`
 `;
 
 const TemplatesDiv = styled.div`
+  position: relative;
   flex: 1;
   &.dark-theme {
     background-color: var(--backgroundColor);
@@ -120,6 +134,7 @@ const SpreadButton = styled.button`
   border: none;
   background: transparent;
   font-size: 3rem;
+  background-color: transparent;
   @keyframes pulse {
     from {
       transform: translateX(-10px);
@@ -129,10 +144,10 @@ const SpreadButton = styled.button`
     }
   }
 `;
-const CloseButton = styled.button`
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: none;
-  font-size: 3rem;
-`;
+// const CloseButton = styled.button`
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   border: none;
+//   font-size: 3rem;
+// `;

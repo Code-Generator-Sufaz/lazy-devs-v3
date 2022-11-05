@@ -1,22 +1,23 @@
 const express = require('express');
 const app = express();
-require("dotenv").config();
+require('dotenv').config();
 const PORT = process.env.PORT;
-const mongoose = require("mongoose");
-const authRoutes = require("./routes/authRoutes");
-const tempRoutes = require("./routes/tempRoutes");
-const userRoutes = require("./routes/userRoutes");
-const session = require("express-session");
-const cookieParser = require("cookie-parser");
-const passportOauth = require('./passportOauth')
-const config = require('../config')
+const mongoose = require('mongoose');
+const authRoutes = require('./routes/authRoutes');
+const tempRoutes = require('./routes/tempRoutes');
+const userRoutes = require('./routes/userRoutes');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const passportOauth = require('./passportOauth');
+const config = require('../config');
+const MongoStore = require('connect-mongo');
 
 app.use(express.json());
 mongoose.connect(process.env.DB_LINK, () => {
   console.log('Database connected');
 });
-if (config.model == "dev") {
-  const cors = require("cors");
+if (config.model == 'dev') {
+  const cors = require('cors');
   app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 }
 
@@ -26,12 +27,13 @@ app.use(
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.DB_LINK }),
   })
 );
 
-if (config.model == "deploy") {
+if (config.model == 'deploy') {
   const path = require('path');
-  app.use(express.static(path.join(__dirname, 'public')))
+  app.use(express.static(path.join(__dirname, 'public')));
 }
 
 app.get('/userToRender', (req, res) => {
@@ -43,16 +45,15 @@ app.use('/user', userRoutes);
 
 passportOauth(app);
 
-if (config.model == "deploy") {
+if (config.model == 'deploy') {
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/index.html'))
-  })
+    res.sendFile(path.join(__dirname, '/public/index.html'));
+  });
 } else {
   //if url is not specified, sending it to 404 page
   app.all('*', (req, res) => {
     res.send('Page not found');
   });
-
 }
 
 //error handler middleware
