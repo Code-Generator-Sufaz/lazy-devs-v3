@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import React, { useContext } from "react";
 import { Context } from "../../../store/Context.js";
-import { GettingStartedData } from "../../../assets/documentationData/documentationData.js";
-import { RiExternalLinkFill } from "react-icons/ri";
+import {
+  GettingStartedData,
+  errorCodes,
+  templateLogics,
+} from "../../../assets/documentationData/documentationData.js";
+
 export default function Documentation() {
   const { darkTheme } = useContext(Context);
   return (
@@ -108,6 +112,24 @@ export default function Documentation() {
           );
         })}
       </GettingStartedContainer>
+      <MoreContent className={darkTheme ? "dark-theme" : "light-theme"}>
+        <div>
+          <h2>Some Template Logic</h2>
+          <ul>
+            {templateLogics.map((el, i) => {
+              return <li>{el}</li>;
+            })}
+          </ul>
+        </div>
+        <div>
+          <h2>Error Code For Running The Template</h2>
+          <ul>
+            {errorCodes.map((errorCode, i) => {
+              return <li>{errorCode}</li>;
+            })}
+          </ul>
+        </div>
+      </MoreContent>
     </DocumentationContainer>
   );
 }
@@ -225,6 +247,37 @@ const GettingStartedContainer = styled.div`
   }
 `;
 
+const MoreContent = styled.div`
+  min-height: 100vh;
+  width: 70%;
+  margin: 4rem auto;
+  div {
+    margin-bottom: 4rem;
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      font-size: 3rem;
+      letter-spacing: 2px;
+      word-spacing: 2px;
+    }
+    ul {
+      li {
+        margin: 0.3rem 0;
+        list-style-type: square;
+        letter-spacing: 2px;
+        line-height: 20px;
+        font-size: 1.1rem;
+        font-weight: 300;
+        line-height: 25px;
+        a {
+          color: dodgerblue;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+`;
 {
   /* <div className="page-content">
         <h1>Project Description</h1>
