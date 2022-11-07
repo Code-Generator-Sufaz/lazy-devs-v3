@@ -24,7 +24,7 @@ const emailSender = async (mailTo, userId) => {
       to: mailTo, // list of receivers
       subject: 'Please verify your email address', // Subject line
       text: 'Hello world?', // plain text body
-      html: `<p>Thank you for registering, to prevent spam accounts, please follow this <a href="https://lazydevs.onrender.com//authentication/verify/${userId}">link</a><p>`, // html body
+      html: `<p>Thank you for registering, to prevent spam accounts, please follow this <a href="https://lazydevs.onrender.com/authentication/verify/${userId}">link</a><p>`, // html body
     });
   } catch (err) {
     throw new ExpressError(err);
