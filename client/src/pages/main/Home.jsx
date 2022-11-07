@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MainButton from "../../components/UI/MainButton";
 import { Context } from "../../store/Context";
-import { DiMongodb, DiNodejsSmall, DiReact } from 'react-icons/di';
-
+import Animations from "./Animations";
+import MotionButton from '../../components/UI/MotionButton/MotionButton'
 export default function Home() {
   const { darkTheme } = useContext(Context);
   const navigate = useNavigate();
@@ -20,12 +20,10 @@ export default function Home() {
         <MainButton onClick={() => navigate("/dashboard")}>
           get started
         </MainButton>
+        {/* <MotionButton onClick={() => navigate("/dashboard")}/> */}
       </BannerContainer>
       <AnimationContainer>
-        <h1><DiMongodb /></h1>
-        <h1>EXPRESS</h1>
-        <h1><DiReact /></h1>
-        <h1><DiNodejsSmall /></h1>
+        <Animations/>
       </AnimationContainer>
     </HomeContainer>
   );
@@ -35,6 +33,7 @@ const HomeContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  gap: 2rem;
   height: 78vh;
   width: 90%;
   margin: 0 auto;
@@ -71,4 +70,11 @@ const BannerContainer = styled.div`
   }
 `;
 
-const AnimationContainer = styled.div``;
+const AnimationContainer = styled.div`
+width: 30rem;
+height: 30rem;
+/* margin-left: 5rem; */
+@media (max-width: 900px) {
+  margin-top: 5rem;
+}
+`;

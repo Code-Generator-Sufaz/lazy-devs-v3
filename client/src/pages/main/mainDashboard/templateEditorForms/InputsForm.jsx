@@ -84,7 +84,7 @@ export default function InputsForm() {
         </LabelInputWrapper>
         <LabelInputWrapper className={darkTheme ? "dark-theme" : "light-theme"}>
           {" "}
-          <select name="type" id="type" onChange={onInputChangeHandler}>
+          <select name="type" id="type" onChange={onInputChangeHandler} style={{backgroundColor: !darkTheme ? 'white' : 'var(--backgroundColor)'}}>
             <option value="" selected disabled>
               {" "}
               SELECT INPUT TYPE
