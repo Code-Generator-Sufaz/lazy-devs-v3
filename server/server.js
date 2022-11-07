@@ -29,7 +29,10 @@ app.use(
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: process.env.DB_LINK }),
+    store: new MongoStore.create({
+      mongoUrl:
+        "mongodb+srv://dcigods:Cow36urSUXftwwXM@final-project.89hjjsk.mongodb.net/FormGen",
+    }),
   })
 );
 
