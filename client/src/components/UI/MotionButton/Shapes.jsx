@@ -4,6 +4,8 @@ import { useRef, useLayoutEffect } from "react";
 import { transition } from "./settings";
 import { Canvas, useThree } from "@react-three/fiber";
 import { useSmoothTransform } from "./use-smooth-transform";
+import { FaReact, FaNodeJs } from "react-icons/fa";
+
 
 export function Shapes({ isHover, isPress, mouseX, mouseY }) {
   const lightRotateX = useSmoothTransform(mouseY, spring, mouseToLightRotation);
@@ -53,7 +55,7 @@ export function Lights() {
 export function Sphere() {
   return (
     <motion.mesh position={[-0.5, -0.5, 0]} variants={{ hover: { z: 2 } }}>
-      <sphereGeometry args={[0.4]} />
+      <sphereGeometry args={[0.2]} />
       <Material />
     </motion.mesh>
   );
@@ -73,7 +75,7 @@ export function Cone() {
         }
       }}
     >
-      <coneGeometry args={[0.3, 0.6, 20]} />
+      <coneGeometry args={[0.15, 0.3, 10]} />
       <Material />
     </motion.mesh>
   );
@@ -92,7 +94,7 @@ export function Torus() {
         }
       }}
     >
-      <torusGeometry args={[0.2, 0.1, 10, 50]} />
+      <torusGeometry args={[0.1, 0.05, 5, 25]} />
       <Material />
     </motion.mesh>
   );
@@ -112,7 +114,7 @@ export function Icosahedron() {
         }
       }}
     >
-      <icosahedronGeometry args={[0.7, 0]} />
+      <icosahedronGeometry args={[0.35, 0]} />
       <Material />
     </motion.mesh>
   );

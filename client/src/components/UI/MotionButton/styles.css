@@ -1,16 +1,16 @@
 button {
-    --purple: #db07d1;
-    --pink: #f2056f;
-    --blue: #61dafb;
+    --purple: #cb8f78;
+    --pink: #6abcff;
+    --blue: #5ba6e4;
   
     appearance: none;
     border: none;
     cursor: pointer;
     background-color: #acc7ed;
     color: #fff;
-    border-radius: 60px;
+    border-radius: 0.2rem;
     outline: none;
-    margin-top: 0;
+    margin-top: 3rem;
     /* padding: 12px 25px; */
     font-family: "Poppins";
     font-size: 2rem;
@@ -29,7 +29,7 @@ button {
     left: -1px;
     right: -1px;
     bottom: -1px;
-    border-radius: 60px;
+    border-radius: 0.2rem;
     background: linear-gradient(
       60deg,
       var(--blue) 0%,
