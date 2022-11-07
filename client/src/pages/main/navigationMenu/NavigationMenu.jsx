@@ -29,7 +29,7 @@ function NavigationMenu() {
 
   const [extendNavbar, setExtendNavbar] = useState(false);
 
-  const pages = ["dashboard", "documentation"];
+  const pages = ["dashboard", "documentation", "contact"];
 
   const logoutHandler = () => {
     axios

@@ -16,6 +16,7 @@ import PasswordChange from './pages/authentication/auth_components/PasswordChang
 import SetNewPassword from './pages/authentication/auth_components/SetNewPassword';
 import Documentation from './pages/main/Docs/Documentation';
 import { baseUrl } from './assets/api/api';
+import Contact from './pages/main/Contact';
 
 
 
@@ -67,6 +68,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/editor" element={<InputForm />} />
           <Route path="/documentation" element={<Documentation />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
       {/* <Footer /> */}
