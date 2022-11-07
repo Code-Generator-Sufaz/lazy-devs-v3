@@ -34,7 +34,7 @@ const HomeContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   gap: 2rem;
-  height: 78vh;
+  height: 90vh;
   width: 90%;
   margin: 0 auto;
   @media (max-width: 900px) {
