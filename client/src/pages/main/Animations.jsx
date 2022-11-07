@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaReact, FaNodeJs } from "react-icons/fa";
 import {
   SiMaterialui,
@@ -9,11 +9,14 @@ import {
   SiMongodb,
 } from "react-icons/si";
 import styled from "styled-components";
+import { Context } from "../../store/Context";
 
 export default function Animations() {
+
+  const {darkTheme} = useContext(Context);
   return (
     <>
-      <LogoDiv>
+      <LogoDiv className={darkTheme ? "dark-theme" : "light-theme"}>
         <div className="logo" style={{ animationDelay: "-0s" }}>
           <SiMaterialui />
         </div>

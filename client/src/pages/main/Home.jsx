@@ -18,7 +18,7 @@ export default function Home() {
         <h5>Get your plug-and-play template for starting your new project</h5>
 
         <MainButton onClick={() => navigate("/dashboard")}>
-          get started
+          Get started
         </MainButton>
         {/* <MotionButton onClick={() => navigate("/dashboard")}/> */}
       </BannerContainer>

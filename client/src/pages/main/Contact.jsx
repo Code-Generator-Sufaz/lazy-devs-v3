@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import AuthContainer from "../../components/UI/UserRegistration/AuthContainer";
 import FormContainer from "../../components/UI/UserRegistration/FormContainer";
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import ButtonContainer from "../../components/UI/UserRegistration/ButtonContainer";
+import {Context} from '../../store/Context'
 
 export default function Contact() {
   const [input, setInput] = useState();
-
   const [message, setMessage] = useState();
+  const {darkTheme} = useContext(Context);
 
   const onChangeHandler = (e) => {
     const inputValue = e.target.value;
@@ -42,10 +43,10 @@ export default function Contact() {
 
   return (
     <Container>
-        {message && <h2>{message}</h2>}
+        {message && <h2 className={darkTheme ? "dark-theme" : "light-theme"}>{message}</h2>}
         <AuthContainer>
           <FormContainer>
-            <h2>Contact us</h2>
+            <h1>Contact us</h1>
             <div>
               <StyledTextField
                 className="text-field"
@@ -85,11 +86,11 @@ export default function Contact() {
             </div>
 
             <ButtonContainer>
-              <div>
-                <button onClick={submitHandler} value="Login">
+
+                <button onClick={submitHandler} value="Send Message">
                   Send message
                 </button>
-              </div>
+
             </ButtonContainer>
           </FormContainer>
         </AuthContainer>
@@ -102,6 +103,15 @@ const StyledTextField = styled(TextField)`
 `;
 
 const Container = styled.div`
+padding: 2rem;
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
     height: 90vh;
     display:flex;
     flex-direction: column;
