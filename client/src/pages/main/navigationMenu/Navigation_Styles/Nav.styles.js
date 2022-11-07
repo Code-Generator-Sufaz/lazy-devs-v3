@@ -96,7 +96,7 @@ export const NavbarLinkExtended = styled(NavLink)`
         transform: translateY(25px);
       }
     }
-    :nth-of-type(4) {
+    :nth-of-type(5) {
       border: 1px solid white;
       padding: 0.3rem 1.2rem;
       z-index: 100;
@@ -146,7 +146,7 @@ export const NavbarLinkExtended = styled(NavLink)`
         transform: translateY(25px);
       }
     }
-    :nth-of-type(4) {
+    :nth-of-type(5) {
       border: 1px solid #1e1e1e;
       padding: 0.3rem 1.2rem;
       z-index: 100;
@@ -248,6 +248,12 @@ export const ThemeBTN = styled.button`
   box-shadow: 0 0 12px gold;
   background-color: gold;
   font-size: 0.5rem;
+  &.dark-theme {
+    color: white;
+  }
+  &.light-theme {
+    color: black;
+  }
 `;
 
 export const Logo = styled.div`
