@@ -14,14 +14,15 @@ const Container = styled.div`
   }
 
   button {
-    font-size: 2rem;
+    display:flex;
+    justify-content: center;
     width: 100%;
     color: white;
     background-color: var(--warningColor);
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     border: 3px solid transparent;
     transition: ease-out 0.1s all;
     cursor: pointer;
