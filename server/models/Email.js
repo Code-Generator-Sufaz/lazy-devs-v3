@@ -46,7 +46,7 @@ const resetPasswordMail = async (mailTo, userId) => {
   }
 };
 
-const sendContactuUsEmail = obj =>{
+const sendContactUsEmail = obj =>{
   return new Promise((resolve, reject)=>{
     transporter.sendMail({
       from : "authentication-generator@outlook.com",
@@ -63,4 +63,4 @@ const sendContactuUsEmail = obj =>{
   })
 
 }
-module.exports = { emailSender, resetPasswordMail , sendContactuUsEmail};
+module.exports = { emailSender, resetPasswordMail , sendContactUsEmail};
