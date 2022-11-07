@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const passportOauth = require('./passportOauth');
 const config = require('../config');
 const MongoStore = require('connect-mongo');
+const otherRoutes = require('./routes/othersRoutes')
 
 app.use(express.json());
 mongoose.connect(process.env.DB_LINK, () => {
@@ -42,6 +43,8 @@ app.get('/userToRender', (req, res) => {
 app.use('/authentication', authRoutes);
 app.use('/code', tempRoutes);
 app.use('/user', userRoutes);
+app.use('/other', otherRoutes)
+
 
 passportOauth(app);
 

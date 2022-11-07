@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MainButton from "../../components/UI/MainButton";
 import { Context } from "../../store/Context";
+import { DiMongodb, DiNodejsSmall, DiReact } from 'react-icons/di';
+
 export default function Home() {
   const { darkTheme } = useContext(Context);
   const navigate = useNavigate();
@@ -20,7 +22,10 @@ export default function Home() {
         </MainButton>
       </BannerContainer>
       <AnimationContainer>
-        <h1>Animation</h1>
+        <h1><DiMongodb /></h1>
+        <h1>EXPRESS</h1>
+        <h1><DiReact /></h1>
+        <h1><DiNodejsSmall /></h1>
       </AnimationContainer>
     </HomeContainer>
   );
