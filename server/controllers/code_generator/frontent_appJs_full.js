@@ -125,8 +125,8 @@ export default App;
 // Header
 function Header({ toggle, setToggle, userAuth, setUserAuth, setDisplay }) {
   return (
-    <div className="header" style={style.header}>
-      <h1>Welcome to a new Project</h1>
+    <div className="header m-4" style={style.header}>
+      <h1>Welcome to ${req.body.project_name} Project</h1>
       <Navbar toggle={toggle} setToggle={setToggle} userAuth={userAuth} setUserAuth={setUserAuth} setDisplay={setDisplay}/>
     </div>
   );
@@ -205,12 +205,11 @@ function Navbar({ toggle, setToggle, userAuth, setUserAuth, setDisplay }) {
     <div className="navbar">
       <ul style={style.navbar_ul}>
         {!userAuth.login && <>
-          <li><span onClick={toggleSwitch} className="showSignIn">Sign up</span></li>
-          <li><span onClick={toggleSwitch} className="showLogIn">Log In</span></li>
+          <li className="btn btn-light px-5"><span onClick={toggleSwitch} className="showSignIn">Sign up</span></li>
+          <li className="btn btn-light px-5"><span onClick={toggleSwitch} className="showLogIn">Log In</span></li>
         </>}
-
-        {userAuth.login && <li><span onClick={logOutHandler} className="logOut">Log Out</span></li>}
-        <li><span onClick={profileHandler}>profile</span></li>
+        {userAuth.login && <li className="btn btn-light px-5"><span onClick={logOutHandler} className="logOut">Log Out</span></li>}
+        <li className="btn btn-light px-5"><span onClick={profileHandler}>profile</span></li>
       </ul>
     </div>
   );
@@ -230,13 +229,24 @@ function Home({display, setDisplay}) {
   return (
     <div className="home">
       {
-        display && <>
-        {display.msg && <h3>{display.msg}</h3> }
-        {display.data && <p>data: {JSON.stringify(display.data)}</p> }
-        {display.err && <p>error: {JSON.stringify(display.err)}</p> }
-        </>
+        display && <div className="container">
+        {display.msg && <h4 className="text-center m-4">{display.msg}</h4> }
+        {display.data && <div><strong className="text-info">data: </strong> {
+        Object.entries(display.data).map((x, i)=>{
+          if(typeof x =="object") {
+            return <p key={i}>{x[0]} : {JSON.stringify(x[1])}</p>
+          } else return <p key={i}>{x[0]} : {x[1]}</p>
+        })
+        }</div> }
+        {display.err && <div><strong className="text-danger">error: </strong> {
+        Object.entries(display.err).map((x, i)=>{
+          if(typeof x =="object") {
+            return <p key={i}>{x[0]} : {JSON.stringify(x[1])}</p>
+          } else return <p key={i}>{x[0]} : {x[1]}</p>
+        })
+        }</div> }
+        </div>
       }
-
     </div>
   );
 }
@@ -328,24 +338,24 @@ function SingUp({setUserAuth, setToggle, setDisplay}) {
         .catch(error => setDisplay(prev => ({ ...prev, msg: "WoW! Something wrong!", err: error }))); // template end here` : ''}
   }
   return (
-    <div className="signup">
-      Sign up Form
+    <div className="signup container">
+      <h3 className="text-center">Sign up</h3>
       <form onSubmit={signUpHandler}>
       ${registrationInputs.map((x,i)=>{
         if(x.type == "button"){
-          return `<div><input type="${x.type}" name="${x.name}" value="${x.name}"/></div>`
+          return `<div className="form-floating mb-3"><input type="${x.type}" name="${x.name}" value="${x.name}"/></div>`
         }
         else {
           return `
-          <div>
+          <div className="form-floating mb-3">
+            <input type="${x.type}" name="${x.name}" id="${x.name}" className="form-control my-1" placeholder=" "/>
             <label htmlFor="${x.name}">${x.name}</label>
-            <input type="${x.type}" name="${x.name}" id="${x.name}"/>
             </div>
         `
         }
       }).join('')}
         <div>
-          <button type="submit">Sign up</button>
+          <button type="submit" className="btn btn-primary m-3">Sign up</button>
         </div>
       </form>
 
@@ -439,24 +449,24 @@ function LogIn({setUserAuth, setToggle, setDisplay}) {
 
   }
   return (
-    <div className="login">
-      Log in
+    <div className="login container">
+      <h3 className="text-center">Log in</h3>
       <form onSubmit={loginHandler}>
       ${loginInputs.map((x,i)=>{
         if(x.type == "button"){
-          return `<div><input type="${x.type}" name="${x.name}" value="${x.name}"/></div>`
+          return `<div className="form-floating mb-3"><input type="${x.type}" name="${x.name}" value="${x.name}"/></div>`
         }
         else {
           return `
-          <div>
+          <div className="form-floating mb-3">   
+            <input type="${x.type}" name="${x.name}" id="${x.name}" className="form-control my-1" placeholder=" "/>
             <label htmlFor="${x.name}">${x.name}</label>
-            <input type="${x.type}" name="${x.name}" id="${x.name}"/>
             </div>
         `
         }
       }).join('')}
         <div>
-          <button type="submit">Log In</button>
+          <button type="submit" className="btn btn-primary m-3">Log In</button>
         </div>
       </form>
 
@@ -469,7 +479,7 @@ const style = {
   app: {
     width: '100vw',
     height: '100vh',
-    backgroundColor: "lightgray",
+    backgroundColor: "white",
   },
   header: {
     textAlign: 'center'
