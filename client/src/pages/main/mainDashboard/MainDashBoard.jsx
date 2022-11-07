@@ -98,9 +98,6 @@ const EditorDiv = styled.div`
   transition: width 1s;
   border-right: 1px solid white;
   @media screen and (max-width: 900px) {
-    position: relative;
-  }
-  @media screen and (max-width: 900px) {
     border-right: none;
     position: relative;
     flex: 1;

@@ -34,12 +34,13 @@ const HomeContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   gap: 2rem;
-  height: 78vh;
+  height: 90vh;
   width: 90%;
   margin: 0 auto;
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: center;
+    margin-top: 3rem;
   }
 `;
 
@@ -73,8 +74,12 @@ const BannerContainer = styled.div`
 const AnimationContainer = styled.div`
 width: 30rem;
 height: 30rem;
-/* margin-left: 5rem; */
+margin-left: 5rem;
 @media (max-width: 900px) {
-  margin-top: 5rem;
+  margin-top: 2rem;
+  width: 15rem;
+height: 15rem;
+margin-left:0;
+
 }
 `;
