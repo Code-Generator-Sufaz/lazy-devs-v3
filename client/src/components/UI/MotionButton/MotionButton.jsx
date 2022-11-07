@@ -26,8 +26,8 @@ export default function App() {
         whileTap="press"
         variants={{
           rest: { scale: 1 },
-          hover: { scale: 1.5 },
-          press: { scale: 1.4 }
+          hover: { scale: 1.2 },
+          press: { scale: 1.2 }
         }}
         onHoverStart={() => {
           resetMousePosition();
@@ -69,7 +69,7 @@ export default function App() {
           variants={{ hover: { scale: 0.85 }, press: { scale: 1.1 } }}
           className="label"
         >
-          play
+          Get started
         </motion.div>
       </motion.button>
     </MotionConfig>

@@ -27,6 +27,7 @@ export const LeftContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   padding-right: 50px;
+  align-items: center;
 `;
 
 export const NavbarInnerContainer = styled.div`
