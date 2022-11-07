@@ -31,7 +31,6 @@ export default function ProfileSidebar() {
   const [errorNewConf, setErrorNewConf] = useState('');
   const [message, setMessage] = useState('');
 
-
   const onChangeHandler = (e) => {
     const newUserInfo = e.target.value;
     setCurrentUser((pre) => {
@@ -54,8 +53,7 @@ export default function ProfileSidebar() {
       );
       console.log(data.data);
       setUser(data.data.newUser);
-      setMessage(data.data.msg)
-
+      setMessage(data.data.msg);
     } catch (err) {
       err.response.data.forEach((item) => {
         console.log(item);
@@ -99,7 +97,7 @@ export default function ProfileSidebar() {
           }}
           onChange={fileOnChange}
           src={
-            user?.avatar.trim().length === 0
+            user?.avatar?.trim().length === 0
               ? 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'
               : `${avatar}`
           }
@@ -272,10 +270,10 @@ const AccordionSummaryProfile = styled(AccordionSummary)`
   }
 `;
 const Error = styled.p`
-color: tomato;
-font-size: 14px;
-margin: 1rem 0;
-text-align:center;
+  color: tomato;
+  font-size: 14px;
+  margin: 1rem 0;
+  text-align: center;
 `;
 
 const LabelPhoto = styled.label`
