@@ -49,7 +49,7 @@ export default function InputForm() {
     darkTheme,
     user,
     setOpen,
-    setFinalDataToSend
+    setFinalDataToSend,
   } = useContext(Context);
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -95,7 +95,7 @@ export default function InputForm() {
       template: mainTemplateSelectedRadio,
     };
     // save finalDataToSend
-    setFinalDataToSend(finalDataToSend)
+    setFinalDataToSend(finalDataToSend);
 
     axios
       .post(`${baseUrl}/code/generated-code`, finalDataToSend)
