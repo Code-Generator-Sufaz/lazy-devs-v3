@@ -5,7 +5,7 @@ import { Shapes } from './Shapes';
 import { transition } from './settings';
 import useMeasure from 'react-use-measure';
 
-export default function App() {
+export default function App({ onClick }) {
   const [ref, bounds] = useMeasure({ scroll: false });
   const [isHover, setIsHover] = useState(false);
   const [isPress, setIsPress] = useState(false);
@@ -20,7 +20,8 @@ export default function App() {
   return (
     <MotionConfig transition={transition}>
       <motion.button
-        className='motion_button'
+        className="motion_button"
+        onClick={onClick}
         ref={ref}
         initial={false}
         animate={isHover ? 'hover' : 'rest'}
