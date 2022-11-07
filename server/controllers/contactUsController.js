@@ -1,10 +1,10 @@
-// contact us send emails
-const sendContactuUsEmail = require('../models/Email')
+    // contact us send emails
+const {sendContactUsEmail} = require('../models/Email')
 
 const contactUsController = (req, res) =>{
     console.log('get a user message')
 
-    sendContactuUsEmail(req.body)
+    sendContactUsEmail(req.body)
     .then(data=>{
         res.json({
             mailSent: true
