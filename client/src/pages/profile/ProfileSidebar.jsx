@@ -29,6 +29,9 @@ export default function ProfileSidebar() {
   const [errorOld, setErrorOld] = useState('');
   const [errorNew, setErrorNew] = useState('');
   const [errorNewConf, setErrorNewConf] = useState('');
+  const [message, setMessage] = useState('');
+
+
   const onChangeHandler = (e) => {
     const newUserInfo = e.target.value;
     setCurrentUser((pre) => {
@@ -50,7 +53,9 @@ export default function ProfileSidebar() {
         currentUser
       );
       console.log(data.data);
-      setUser(data.data);
+      setUser(data.data.newUser);
+      setMessage(data.data.msg)
+
     } catch (err) {
       err.response.data.forEach((item) => {
         console.log(item);
@@ -205,6 +210,7 @@ export default function ProfileSidebar() {
           </AccordionProfile>
 
           <MainButton type='submit'>submit</MainButton>
+          {message && <h2>{message}</h2>}
         </Form>
       )}
       {!openFormUserUpdate ? <ProfileCodeCards /> : null}
@@ -233,6 +239,12 @@ const Form = styled.form`
   margin-top: 1rem;
   padding: 2rem 0;
   margin-bottom: 2rem;
+  h2 {
+    color: black;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
 `;
 const StyledTextField = styled(TextField)`
   &:first-of-type input {
@@ -259,7 +271,12 @@ const AccordionSummaryProfile = styled(AccordionSummary)`
     padding: 0 10px;
   }
 `;
-const Error = styled.p``;
+const Error = styled.p`
+color: tomato;
+font-size: 14px;
+margin: 1rem 0;
+text-align:center;
+`;
 
 const LabelPhoto = styled.label`
   position: absolute;

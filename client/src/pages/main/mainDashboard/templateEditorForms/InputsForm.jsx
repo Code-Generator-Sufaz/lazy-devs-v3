@@ -105,7 +105,8 @@ export default function InputsForm() {
             })}
           </select>
         </LabelInputWrapper>
-        {inputError && <span>{inputError}</span>}
+        {inputError && <span className='error'>{inputError}</span>}
+
         <LabelInputWrapper className={darkTheme ? 'dark-theme' : 'light-theme'}>
           {' '}
           <span>WANT VALIDATION ?</span>
@@ -157,6 +158,10 @@ const InnerFormWrapper = styled.div`
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  .error {
+    color: tomato;
+    margin-bottom: 1rem;
+  }
 `;
 
 const LabelInputWrapper = styled.div`

@@ -30,7 +30,7 @@ const userAccountSettingsUpdate = async (req, res, next) => {
     ).select('-password');
 
     req.session.user = newUser;
-    res.send(newUser);
+    res.send({newUser, msg:'Your data has been successfully updated'});
   } catch (err) {
     next(new ExpressError('Failed to Update, Please Try Again', 400));
   }
@@ -40,11 +40,22 @@ const resetController = async (req, res, next) => {
   const domain = req.get('origin');
 
   const { email } = req.body;
+  try {
+    const user = await User.findOne({ email: email });
 
-  const user = await User.findOne({ email: email });
+    
+    if(user != null) {
+      console.log(user)
+      resetPasswordMail(email, user.id, domain);
+      res.send('Email sent');
+    } else {
+      console.log('fffff')
+      return next(new ExpressError('Email not found', 300))
+    }
+  } catch (err) {
+    next(new ExpressError('Failed to send email', 400) )
+  }
 
-  resetPasswordMail(email, user.id, domain);
-  res.send('Email sent');
 };
 
 const settingNewPassController = async (req, res, next) => {
@@ -65,10 +76,10 @@ const settingNewPassController = async (req, res, next) => {
         console.log('Yeees');
         res.send('Password updated');
       } else {
-        throw new ExpressError('Password not match', 400);
+        return next(new ExpressError('Passwords do not match', 400));
       }
     } else {
-      throw new ExpressError('What', 400);
+      return next(new ExpressError('Failed to change password. Please try again', 400));
     }
   } catch (err) {
     next(new ExpressError());
