@@ -240,7 +240,6 @@ export const NavbarLinkExtendedMobile = styled(NavLink)`
 
 export const ThemeBTN = styled.button`
   border: 1px solid white;
-  align-self: center;
   width: 12px;
   height: 12px;
   border-radius: 50%;
