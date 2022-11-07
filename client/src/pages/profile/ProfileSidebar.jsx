@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { Context } from '../../store/Context';
@@ -22,7 +22,9 @@ export default function ProfileSidebar() {
     id: user._id,
   });
   const [submitButton, setSubmitButton] = useState(false);
-  const [avatar, setAvatar] = useState(user.avatar);
+  const [avatar, setAvatar] = useState(
+    'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'
+  );
   const [image, setImage] = useState();
   const [errorFirst, setErrorFirst] = useState('');
   const [errorLast, setErrorLast] = useState('');
@@ -37,10 +39,12 @@ export default function ProfileSidebar() {
       return { ...pre, [e.target.name]: newUserInfo };
     });
   };
-
+  useEffect(() => {
+    if (user?.avatar?.trim().length > 0) setAvatar(user.avatar);
+  }, [user]);
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(currentUser);
+
     setErrorFirst('');
     setErrorLast('');
     setErrorOld('');
@@ -96,12 +100,8 @@ export default function ProfileSidebar() {
             objectPosition: 'center',
           }}
           onChange={fileOnChange}
-          src={
-            user?.avatar?.trim().length === 0
-              ? 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg'
-              : `${avatar}`
-          }
-          alt=''
+          src={avatar}
+          alt='User profile'
         />
         <LabelPhoto htmlFor='photo'>
           <BsUpload />
