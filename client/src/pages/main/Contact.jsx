@@ -6,6 +6,7 @@ import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import ButtonContainer from "../../components/UI/UserRegistration/ButtonContainer";
 import { Context } from "../../store/Context";
+import baseUrl from '../../assets/api/api'
 
 export default function Contact() {
   const [input, setInput] = useState();
@@ -26,7 +27,7 @@ export default function Contact() {
     e.preventDefault();
     if(e.target.name.value && e.target.subject.value && e.target.email.value && e.target.message.value) {
       axios
-        .post("/other/contact", input)
+        .post(baseUrl + "/other/contact", input)
         .then((result) => {
           console.log(result);
           if (result.data.mailSent) {

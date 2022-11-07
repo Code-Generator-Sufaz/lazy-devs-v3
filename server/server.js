@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-require('dotenv').config();
+// require('dotenv').config();
 const PORT = process.env.PORT;
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
@@ -32,10 +32,10 @@ app.use(
   })
 );
 
-if (config.model == 'deploy') {
+// if (config.model == 'deploy') {
   const path = require('path');
   app.use(express.static(path.join(__dirname, 'public')));
-}
+// }
 
 app.get('/userToRender', (req, res) => {
   res.json(req.session.user);
@@ -48,16 +48,16 @@ app.use('/other', otherRoutes)
 
 passportOauth(app);
 
-if (config.model == 'deploy') {
+// if (config.model == 'deploy') {
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/index.html'));
-  });
-} else {
-  //if url is not specified, sending it to 404 page
-  app.all('*', (req, res) => {
-    res.send('Page not found');
-  });
-}
+//   });
+// } else {
+//   //if url is not specified, sending it to 404 page
+//   app.all('*', (req, res) => {
+//     res.send('Page not found');
+//   });
+// }
 
 //error handler middleware
 app.use((err, req, res, next) => {
