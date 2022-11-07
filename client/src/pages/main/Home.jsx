@@ -17,10 +17,10 @@ export default function Home() {
         </h1>
         <h5>Get your plug-and-play template for starting your new project</h5>
 
-        {/* <MainButton onClick={() => navigate("/dashboard")}>
+        <MainButton onClick={() => navigate("/dashboard")}>
           get started
-        </MainButton> */}
-        <MotionButton onClick={() => navigate("/dashboard")}/>
+        </MainButton>
+        {/* <MotionButton onClick={() => navigate("/dashboard")}/> */}
       </BannerContainer>
       <AnimationContainer>
         <Animations/>

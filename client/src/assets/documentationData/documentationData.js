@@ -177,8 +177,8 @@ export const errorCodes = [
 ];
 
 export const templateLogics = [
-  "when you want use nodemailer, you must have a input which type == 'email'.",
-  "password will always encrypted",
-  "registrationInputs will be add to Schema except type == 'button'",
-  "if you put nothing in loginInputs, the main input of registrationInputs will be the loginInputs(your first registrationInput will be main input by default)",
+  "When you want to use nodemailer, you must have an input with type == 'email'.",
+  "Password will always get encrypted.",
+  "Registration Inputs will be added to Schema, except type == 'button'",
+  "If you put nothing in login inputs, the main input of registration inputs will be the login inputs (your first registration input will be the main input by default)",
 ];

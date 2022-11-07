@@ -45,4 +45,22 @@ const resetPasswordMail = async (mailTo, userId) => {
     throw new ExpressError(err);
   }
 };
-module.exports = { emailSender, resetPasswordMail };
+
+const sendContactuUsEmail = obj =>{
+  return new Promise((resolve, reject)=>{
+    transporter.sendMail({
+      from : "authentication-generator@outlook.com",
+      to : "authentication-generator@outlook.com",
+      subject: "User Messages: " + obj.subject + " from: " + obj.name,
+      html: `<h3>${obj.subject}</h3>
+      <p>${obj.message}</p>
+      <p>${obj.name}</p>
+      <p>${obj.email}</p>`
+    })
+    .then(data => resolve(data))
+    .catch(err => reject(err))
+
+  })
+
+}
+module.exports = { emailSender, resetPasswordMail , sendContactuUsEmail};
