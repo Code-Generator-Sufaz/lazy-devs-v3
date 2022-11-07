@@ -11,7 +11,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const passportOauth = require('./passportOauth');
 const config = require('./config');
-const MongoStore = require('connect-mongo');
+
 const otherRoutes = require('./routes/othersRoutes');
 
 app.use(express.json());
@@ -29,9 +29,6 @@ app.use(
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({
-      mongoUrl: process.env.DB_LINK,
-    }),
   })
 );
 
