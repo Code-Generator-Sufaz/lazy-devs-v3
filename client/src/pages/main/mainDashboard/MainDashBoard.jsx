@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Context } from '../../../store/Context';
-import Alert from '../../../components/UI/Alert';
-import Editor from './EditorForm';
-import CodeTemplate from './CodeTemplate';
-import styled from 'styled-components';
-import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
+import React, { useContext, useState, useEffect } from "react";
+import { Context } from "../../../store/Context";
+import Alert from "../../../components/UI/Alert";
+import Editor from "./EditorForm";
+import CodeTemplate from "./CodeTemplate";
+import styled from "styled-components";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 export default function MainDashBoard() {
   const { templates, darkTheme } = useContext(Context);
@@ -18,12 +18,12 @@ export default function MainDashBoard() {
     const updateWindowDimensions = () => {
       const newWidth = window.innerWidth;
       setScreenWidth(newWidth);
-      console.log('updating width');
+      console.log("updating width");
     };
 
-    window.addEventListener('resize', updateWindowDimensions);
+    window.addEventListener("resize", updateWindowDimensions);
 
-    return () => window.removeEventListener('resize', updateWindowDimensions);
+    return () => window.removeEventListener("resize", updateWindowDimensions);
   }, []);
   return (
     <DashBoardContainer>
@@ -67,7 +67,7 @@ export default function MainDashBoard() {
         )}
       </MainContentContainer>
       <Alert>
-        {templates ? 'Template successfully saved!' : 'Template already exists'}
+        {templates ? "Template successfully saved!" : "Template already exists"}
       </Alert>
     </DashBoardContainer>
   );
@@ -97,8 +97,6 @@ const EditorDiv = styled.div`
   flex-basis: 320px;
   transition: width 1s;
   border-right: 1px solid white;
-  @media screen and (max-width: 900px) {
-    position: relative;
   @media screen and (max-width: 900px) {
     border-right: none;
     position: relative;
