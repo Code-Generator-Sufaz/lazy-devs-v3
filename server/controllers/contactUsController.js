@@ -16,9 +16,6 @@ const contactUsController = (req, res) =>{
         })
     })
 
-   
-    
-
 }
 
 module.exports =  contactUsController
