@@ -343,9 +343,15 @@ function SingUp({setUserAuth, setToggle, setDisplay}) {
       <form onSubmit={signUpHandler}>
       ${registrationInputs.map((x,i)=>{
         if(x.type == "button"){
-          return `<div className="form-floating mb-3"><input type="${x.type}" name="${x.name}" value="${x.name}"/></div>`
-        }
-        else {
+          return `<div className="form-floating mb-3"><input type="${x.type}" name="${x.name}" value="${x.name}" className="btn btn-light"/></div>`
+        } else if(x.type == "checkbox"){
+          return `
+          <div className="form-check mb-3">
+            <input type="${x.type}" name="${x.name}" id="${x.name}" className="form-check-input my-1"/>
+            <label htmlFor="${x.name}" className="form-check-label">${x.name}</label>
+            </div>
+        `
+        } else {
           return `
           <div className="form-floating mb-3">
             <input type="${x.type}" name="${x.name}" id="${x.name}" className="form-control my-1" placeholder=" "/>
@@ -355,7 +361,7 @@ function SingUp({setUserAuth, setToggle, setDisplay}) {
         }
       }).join('')}
         <div>
-          <button type="submit" className="btn btn-primary m-3">Sign up</button>
+          <button type="submit" className="btn btn-primary m-3 px-5 py-2">Sign up</button>
         </div>
       </form>
 
@@ -454,9 +460,15 @@ function LogIn({setUserAuth, setToggle, setDisplay}) {
       <form onSubmit={loginHandler}>
       ${loginInputs.map((x,i)=>{
         if(x.type == "button"){
-          return `<div className="form-floating mb-3"><input type="${x.type}" name="${x.name}" value="${x.name}"/></div>`
-        }
-        else {
+          return `<div className="form-floating mb-3"><input type="${x.type}" name="${x.name}" value="${x.name}" className="btn btn-light"/></div>`
+        } else if(x.type == "checkbox"){
+          return `
+          <div className="form-check mb-3">
+            <input type="${x.type}" name="${x.name}" id="${x.name}" className="form-check-input my-1"/>
+            <label htmlFor="${x.name}" className="form-check-label">${x.name}</label>
+            </div>
+        `
+        } else {
           return `
           <div className="form-floating mb-3">   
             <input type="${x.type}" name="${x.name}" id="${x.name}" className="form-control my-1" placeholder=" "/>
@@ -466,7 +478,7 @@ function LogIn({setUserAuth, setToggle, setDisplay}) {
         }
       }).join('')}
         <div>
-          <button type="submit" className="btn btn-primary m-3">Log In</button>
+          <button type="submit" className="btn btn-primary m-3 px-5 py-2">Log In</button>
         </div>
       </form>
 
