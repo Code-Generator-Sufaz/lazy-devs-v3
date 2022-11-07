@@ -1,4 +1,4 @@
-button {
+.motion_button {
     --purple: #cb8f78;
     --pink: #6abcff;
     --blue: #5ba6e4;
@@ -10,17 +10,23 @@ button {
     color: #fff;
     border-radius: 0.2rem;
     outline: none;
-    margin-top: 3rem;
+    margin: 3rem 0;
     /* padding: 12px 25px; */
     font-family: "Poppins";
     font-size: 2rem;
     font-weight: 600;
-    line-height: 48px;
+    /* line-height: 48px; */
     letter-spacing: -1px;
     position: relative;
     text-align: center;
     display: flex;
     align-items: center;
+  }
+  @media (max-width: 900px) {
+    .motion_button {
+      margin: 3rem auto;
+      
+    }
   }
   
   .shapes {

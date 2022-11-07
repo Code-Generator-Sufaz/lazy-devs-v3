@@ -15,7 +15,7 @@ const Container = styled.div`
   position: relative;
 
   @media (max-width: 900px) {
-    height:140vh;
+    height:100vh;
     width:100%;
     flex-direction: column;
     justify-content: space-evenly;

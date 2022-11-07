@@ -5,7 +5,7 @@ import { Shapes } from "./Shapes";
 import { transition } from "./settings";
 import useMeasure from "react-use-measure";
 
-export default function App() {
+export default function App({ onClick }) {
   const [ref, bounds] = useMeasure({ scroll: false });
   const [isHover, setIsHover] = useState(false);
   const [isPress, setIsPress] = useState(false);
@@ -20,6 +20,8 @@ export default function App() {
   return (
     <MotionConfig transition={transition}>
       <motion.button
+        className="motion_button"
+        onClick={onClick}
         ref={ref}
         initial={false}
         animate={isHover ? "hover" : "rest"}
@@ -27,7 +29,7 @@ export default function App() {
         variants={{
           rest: { scale: 1 },
           hover: { scale: 1.2 },
-          press: { scale: 1.2 }
+          press: { scale: 1.2 },
         }}
         onHoverStart={() => {
           resetMousePosition();
@@ -49,7 +51,7 @@ export default function App() {
           className="shapes"
           variants={{
             rest: { opacity: 0 },
-            hover: { opacity: 1 }
+            hover: { opacity: 1 },
           }}
         >
           <div className="pink blush" />
