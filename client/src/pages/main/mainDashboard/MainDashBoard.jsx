@@ -99,7 +99,6 @@ const EditorDiv = styled.div`
   border-right: 1px solid white;
   @media screen and (max-width: 900px) {
     position: relative;
-    background-color: red;
   @media screen and (max-width: 900px) {
     border-right: none;
     position: relative;
