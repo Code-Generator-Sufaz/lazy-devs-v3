@@ -1,17 +1,17 @@
-import styled from 'styled-components';
-import React, { useContext } from 'react';
-import { Context } from '../../../store/Context.js';
+import styled from "styled-components";
+import React, { useContext } from "react";
+import { Context } from "../../../store/Context.js";
 import {
   GettingStartedData,
   errorCodes,
   templateLogics,
-} from '../../../assets/documentationData/documentationData.js';
+} from "../../../assets/documentationData/documentationData.js";
 
 export default function Documentation() {
   const { darkTheme } = useContext(Context);
   return (
     <DocumentationContainer>
-      <OverviewContainer className={darkTheme ? 'dark-theme' : 'light-theme'}>
+      <OverviewContainer className={darkTheme ? "dark-theme" : "light-theme"}>
         <div>
           <h2>
             <span>L</span>AZY <span>D</span>EVS - OVERVIEW
@@ -36,7 +36,9 @@ export default function Documentation() {
           </p>
         </div>
         <div>
-          <h2>ADVANTAGES OF THE <span>L</span>AZY <span>D</span>EVS TOOL:</h2>
+          <h2>
+            ADVANTAGES OF THE <span>L</span>AZY <span>D</span>EVS TOOL:
+          </h2>
           <ul>
             <li>
               save time: usually, it takes 1-2 days of work to write an
@@ -65,7 +67,7 @@ export default function Documentation() {
         </div>
       </OverviewContainer>
       <GettingStartedContainer
-        className={darkTheme ? 'dark-theme' : 'light-theme'}
+        className={darkTheme ? "dark-theme" : "light-theme"}
       >
         <h2>GETTING STARTED</h2>
 
@@ -73,7 +75,7 @@ export default function Documentation() {
           if (step.links) {
             return (
               <div>
-                {' '}
+                {" "}
                 <p>{step.step}</p>
                 <p>{step.content}</p>
                 <p>dotenv link : {step.links.dotenv}</p>
@@ -92,14 +94,14 @@ export default function Documentation() {
                   } else if (i === 1 && innerStep.link) {
                     return (
                       <li>
-                        {innerStep?.link?.jwt} & {innerStep?.link?.cookie}{' '}
+                        {innerStep?.link?.jwt} & {innerStep?.link?.cookie}{" "}
                         {innerStep.text}
                       </li>
                     );
                   } else if (i === 2 && innerStep.link) {
                     return (
                       <li>
-                        {innerStep?.link?.jwt} & {innerStep?.link?.axios}{' '}
+                        {innerStep?.link?.jwt} & {innerStep?.link?.axios}{" "}
                         {innerStep?.text}
                       </li>
                     );
@@ -112,7 +114,7 @@ export default function Documentation() {
           );
         })}
       </GettingStartedContainer>
-      <MoreContent className={darkTheme ? 'dark-theme' : 'light-theme'}>
+      <MoreContent className={darkTheme ? "dark-theme" : "light-theme"}>
         <div>
           <h2>Some Template Logic</h2>
           <ul>
@@ -140,6 +142,9 @@ const DocumentationContainer = styled.section`
   width: 90vw;
   height: 100%;
   margin: 0 auto;
+  @media screen and (max-width: 500px) {
+    width: 95vw;
+  }
 `;
 
 const OverviewContainer = styled.div`
@@ -168,9 +173,6 @@ const OverviewContainer = styled.div`
       font-size: 1.1rem;
       font-weight: 300;
       word-spacing: 2px;
-      @media screen and (max-width: 450px) {
-        text-align: center;
-      }
     }
     &:nth-of-type(1) {
       h2 {
@@ -189,10 +191,18 @@ const OverviewContainer = styled.div`
           font-weight: 300;
           font-size: 1.1rem;
           word-spacing: 2px;
-          @media screen and (max-width: 450px) {
-            text-align: center;
+          @media screen and (max-width: 500px) {
+            text-align: left;
           }
         }
+      }
+    }
+  }
+  @media screen and (max-width: 500px) {
+    width: 90%;
+    div {
+      p {
+        text-align: center;
       }
     }
   }
@@ -252,6 +262,16 @@ const GettingStartedContainer = styled.div`
       }
     }
   }
+  @media screen and (max-width: 500px) {
+    width: 90%;
+    div {
+      ol {
+        li {
+          text-align: left;
+        }
+      }
+    }
+  }
 `;
 
 const MoreContent = styled.div`
@@ -283,6 +303,9 @@ const MoreContent = styled.div`
         }
       }
     }
+  }
+  @media screen and (max-width: 500px) {
+    width: 90%;
   }
 `;
 {
