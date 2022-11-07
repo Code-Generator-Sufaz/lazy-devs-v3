@@ -6,7 +6,7 @@ import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import ButtonContainer from "../../components/UI/UserRegistration/ButtonContainer";
 import { Context } from "../../store/Context";
-import baseUrl from '../../assets/api/api'
+import {baseUrl} from '../../assets/api/api'
 
 export default function Contact() {
   const [input, setInput] = useState();

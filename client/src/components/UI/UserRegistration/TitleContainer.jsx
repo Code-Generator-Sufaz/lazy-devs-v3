@@ -37,15 +37,6 @@ const Container = styled.div`
   p {
     font-size: 1.3rem;
   }
-  /* h2 {
-    margin-bottom: 2rem;
-    font-size: 4.5rem;
-    font-weight: 100;
-    color: var(--textColor);
-    span {
-      color: var(--warningColor);
-    }
-  } */
 
   @media (max-width: 900px) {
     text-align: center;
