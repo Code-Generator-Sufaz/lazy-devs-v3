@@ -11,7 +11,7 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const passportOauth = require("./passportOauth");
 const config = require("../config");
-const MongoStore = require("connect-mongo").default;
+const MongoStore = require("connect-mongo");
 const otherRoutes = require("./routes/othersRoutes");
 
 app.use(express.json());
