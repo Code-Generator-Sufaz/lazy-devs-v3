@@ -36,7 +36,7 @@ export default function Documentation() {
           </p>
         </div>
         <div>
-          <h2>ADVANTAGES OF THE LAZY-DEVS TOOL:</h2>
+          <h2>ADVANTAGES OF THE <span>L</span>AZY <span>D</span>EVS TOOL:</h2>
           <ul>
             <li>
               save time: usually, it takes 1-2 days of work to write an
