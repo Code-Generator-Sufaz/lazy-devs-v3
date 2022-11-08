@@ -1,6 +1,6 @@
 
 const config = {
-    model: "deploy", // "deploy"
+    model: "dev", // "deploy"
     dev:{
         domain: "http://localhost:5000",
         frontEnd: "http://localhost:3000"

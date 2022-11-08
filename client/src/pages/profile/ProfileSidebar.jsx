@@ -82,6 +82,7 @@ export default function ProfileSidebar() {
       let formData = new FormData();
       formData.append('photo', image);
       const data = await axios.post(`${baseUrl}/user/profilephoto`, formData);
+      user.avatar = data.data.url;
       setAvatar(data.data.url);
       setSubmitButton(false);
     } catch (err) {
