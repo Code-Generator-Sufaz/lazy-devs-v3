@@ -26,13 +26,14 @@ export default function InputsForm() {
   // CREATES EACH INPUT AND SET IT TO THE ARRAY OF INPUTS
   const createInputsHandler = (e) => {
     e.preventDefault();
+    console.log(input);
     if (input.name === undefined || input.name?.trim().length === 0) {
-      setInputError('Name should not be empty');
+      setInputError('Name should not be empty and unique');
       return arrOfInputs;
     } else if (
       arrOfInputs.filter((item) => item.name === input.name).length > 0
     ) {
-      setInputError('Input with that name already exists');
+      setInputError('Name should not be empty and unique');
       return arrOfInputs;
     } else if (input.type === undefined) {
       setInputError('Please select a type');
