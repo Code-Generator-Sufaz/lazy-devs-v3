@@ -549,6 +549,45 @@
   text-align: center;
 }
 
+#project_nameDark {
+  position: relative;
+  z-index: 1;
+}
+#project_nameDark::after {
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  display: inline-block;
+  width: 120px;
+  height: 15px;
+  content: "PROJECT NAME";
+  font-size: 12px;
+  letter-spacing: 2px;
+  background: var(--backgroundColor);
+  color: var(--lightBackgroundColor);
+  z-index: 100;
+  text-align: center;
+}
+
+#project_nameLight {
+  position: relative;
+  z-index: 1;
+}
+#project_nameLight::after {
+  position: absolute;
+  top: -5px;
+  left: 20px;
+  display: inline-block;
+  width: 120px;
+  height: 15px;
+  content: "PROJECT NAME";
+  font-size: 12px;
+  letter-spacing: 2px;
+  background: var(--lightBackgroundColor);
+  color: var(--backgroundColor);
+  z-index: 100;
+  text-align: center;
+}
 .editor-on {
   opacity: 1;
   transition: 0.5s ease all;

@@ -1,19 +1,19 @@
-import React, { useContext, useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Context } from "../../../store/Context";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import usePasswordToggle from "./usePasswordToggle";
-import TextField from "@mui/material/TextField";
-import Registration from "../../../components/UI/UserRegistration/MainContainer";
-import TitleContainer from "../../../components/UI/UserRegistration/TitleContainer";
-import FormContainer from "../../../components/UI/UserRegistration/FormContainer";
-import ButtonContainer from "../../../components/UI/UserRegistration/ButtonContainer";
-import PassportContainer from "../../../components/UI/UserRegistration/PassportContainer";
-import AuthContainer from "../../../components/UI/UserRegistration/AuthContainer";
-import { baseUrl } from "../../../assets/api/api";
-
+import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Context } from '../../../store/Context';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+import usePasswordToggle from './usePasswordToggle';
+import TextField from '@mui/material/TextField';
+import Registration from '../../../components/UI/UserRegistration/MainContainer';
+import TitleContainer from '../../../components/UI/UserRegistration/TitleContainer';
+import FormContainer from '../../../components/UI/UserRegistration/FormContainer';
+import ButtonContainer from '../../../components/UI/UserRegistration/ButtonContainer';
+import PassportContainer from '../../../components/UI/UserRegistration/PassportContainer';
+import AuthContainer from '../../../components/UI/UserRegistration/AuthContainer';
+import { baseUrl } from '../../../assets/api/api';
+console.log(baseUrl);
 export default function LogIn() {
   const [PasswordInputType, ToggleIcon] = usePasswordToggle();
 
@@ -29,7 +29,7 @@ export default function LogIn() {
     setUserInput((prev) => {
       return {
         ...prev,
-        [e.target.name]: inputValue,
+        [e.target.name]: inputValue.trim(),
       };
     });
   };
@@ -41,14 +41,14 @@ export default function LogIn() {
       .then((result) => {
         if (result.data.verified) {
           sessionStorage.setItem(
-            "loggedInUser",
+            'loggedInUser',
             JSON.stringify({ currentUser: result.data })
           );
           setUser(result.data);
           setIsLoggedIn(true);
-          navigate("/dashboard");
+          navigate('/dashboard');
         } else {
-          setError("Please verify your email first");
+          setError('Please verify your email first');
         }
       })
       .catch((err) => {
@@ -58,8 +58,8 @@ export default function LogIn() {
   };
 
   return (
-    <Registration >
-      <TitleContainer >
+    <Registration>
+      <TitleContainer>
         <h2>
           Login to <span>L</span>azy <span>D</span>ev's
         </h2>
@@ -68,48 +68,49 @@ export default function LogIn() {
       <AuthContainer>
         <PassportContainer />
         <Divider>
-          <div><p>or</p></div>
+          <div>
+            <p>or</p>
+          </div>
         </Divider>
         <FormContainer>
-
           <div>
             <StyledTextField
-              className="text-field"
-              name="email"
-              id="filled-basic"
-              label="Email"
-              variant="filled"
+              className='text-field'
+              name='email'
+              id='filled-basic'
+              label='Email'
+              variant='filled'
               onChange={onChangeHandler}
             />
           </div>
 
-          <div style={{ position: "relative" }}>
+          <div style={{ position: 'relative' }}>
             <StyledTextField
-              className="text-field"
-              name="password"
-              id="filled-basic"
-              label="Password"
-              variant="filled"
+              className='text-field'
+              name='password'
+              id='filled-basic'
+              label='Password'
+              variant='filled'
               type={PasswordInputType}
-              autoComplete="current-password"
+              autoComplete='current-password'
               onChange={onChangeHandler}
             />
-            <IconSpan className="password-toggle-icon">{ToggleIcon}</IconSpan>
+            <IconSpan className='password-toggle-icon'>{ToggleIcon}</IconSpan>
           </div>
           {error && <h3>{error}</h3>}
           <ButtonContainer>
             <div>
-              <button onClick={loginHandler} value="Login">
+              <button onClick={loginHandler} value='Login'>
                 Login
               </button>
             </div>
           </ButtonContainer>
-          <p style={{  marginTop: "1rem" }}>
-            <NavLink to="/passwordchange">Forgot your password?</NavLink>
+          <p style={{ marginTop: '1rem' }}>
+            <NavLink to='/passwordchange'>Forgot your password?</NavLink>
           </p>
-          <p style={{ color: "black", marginTop: "1rem" }}>
-            Don't have an account yet? Sign up{" "}
-            <NavLink to="/register">here!</NavLink>
+          <p style={{ color: 'black', marginTop: '1rem' }}>
+            Don't have an account yet? Sign up{' '}
+            <NavLink to='/register'>here!</NavLink>
           </p>
         </FormContainer>
       </AuthContainer>
@@ -132,5 +133,5 @@ const IconSpan = styled.span`
 const Divider = styled.div`
   display: flex;
   width: 100%;
-  justify-content:center;
-`
+  justify-content: center;
+`;

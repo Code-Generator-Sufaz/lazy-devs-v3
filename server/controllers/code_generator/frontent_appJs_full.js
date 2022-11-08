@@ -1,37 +1,43 @@
-/** 
+/**
  * generator app.jsx's code all in one file
  * @req request from frontend method:post
  * @file need create a file ? default is false
  * @filePath relative path to save/update the server.js .Defalt is './test/client/src/app.jsx'
  * @return string format of code of app.jsx
  */
-const appJsTemplate_gen = (req, file = false, filePath = './test/client/src/App.jsx') =>{
+const appJsTemplate_gen = (
+  req,
+  file = false,
+  filePath = "./test/client/src/App.jsx"
+) => {
+  const tm1 = req.body.template == "tm1_session" ? true : false;
+  const tm2 = req.body.template == "tm2_jwt_cookie" ? true : false;
+  const tm3 = req.body.template == "tm3_jwt_axios" ? true : false;
+  // let axios = req.body.frontend_packages.axios;
+  // if (tm3) axios=true;
 
-const tm1 = req.body.template == "tm1_session" ? true : false;
-const tm2 = req.body.template == "tm2_jwt_cookie" ? true : false;
-const tm3 = req.body.template == "tm3_jwt_axios" ? true : false;
-// let axios = req.body.frontend_packages.axios;
-// if (tm3) axios=true;
+  // sort the array put main input at first. password will be second if there is one
+  // update name let it macht Schema format name_type
+  const registrationInputs = req.body.registrationInputs;
+  const loginInputs = req.body.loginInputs;
 
-// sort the array put main input at first. password will be second if there is one
-// update name let it macht Schema format name_type
-const registrationInputs = req.body.registrationInputs
-const loginInputs = req.body.loginInputs
-
-
-let appJsTemplate=
-`
-// This is React Front end code 
-// how to ues: 
-// copy and paste it in your react_folder/src/App.js
+  let appJsTemplate = `   // This is React Front end code 
+   // how to use: 
+   // copy and paste it in your react_folder/src/App.js
 
 import { useState, useEffect } from "react";
-${tm3 ? `import axios from "axios";` : ''}
+${tm3 ? `import axios from "axios";` : ""}
 
 // settings
-${(tm2 || tm3) ? `const baseURL = 'http://localhost:5000';` : `const baseURL = '';` }
+${
+  tm2 || tm3
+    ? `const baseURL = 'http://localhost:5000';`
+    : `const baseURL = '';`
+}
 
-${tm3 ? `// Template - 3  jsonwebtoken + axios(.create) save token in localStorage
+${
+  tm3
+    ? `// Template - 3  jsonwebtoken + axios(.create) save token in localStorage
 // create new variable and let it work as axios
 // axios with token inside request headers  => A.W.T.IRH
 const AWT = axios.create({ baseURL })
@@ -44,7 +50,9 @@ AWT.interceptors.request.use(req => {
     req.headers.token = token
   };
   return req;
-}); // this.template end` : ''}
+}); // this.template end`
+    : ""
+}
 
 function App() {
   // to show/hide login form and signup from
@@ -70,7 +78,9 @@ function App() {
   // this useEffect is used to check auth status of the user
   useEffect(() => {
 
-    ${tm1 ? `// Template - 1 session + proxy
+    ${
+      tm1
+        ? `// Template - 1 session + proxy
     fetch(baseURL + '/user/loginStatus')
     .then(response => response.json())
     .then(data => {
@@ -79,10 +89,14 @@ function App() {
         setUserAuth(data)
       }
     })
-    .catch(err => {console.log(err)}) // Template end` : ''}
+    .catch(err => {console.log(err)}) // Template end`
+        : ""
+    }
     
 
-    ${tm2 ? `// Template - 2  jsonwebtoken + cookie-parser
+    ${
+      tm2
+        ? `// Template - 2  jsonwebtoken + cookie-parser
     fetch(baseURL + '/user/loginStatus', {credentials: 'include'})
     .then(response => response.json())
     .then(data => {
@@ -90,9 +104,13 @@ function App() {
         setUserAuth(data)
       }
     })
-    .catch(err => {console.log(err)}) // Template end` : ''}
+    .catch(err => {console.log(err)}) // Template end`
+        : ""
+    }
 
-    ${tm3 ? `// Template - 3  jsonwebtoken + axios(.create) save token in localStorage
+    ${
+      tm3
+        ? `// Template - 3  jsonwebtoken + axios(.create) save token in localStorage
     // firstly check the localStorage
     if(localStorage.getItem('token')) {
       AWT.get('/user/loginStatus')
@@ -102,7 +120,9 @@ function App() {
         }
       })
       .catch(err => {console.log(err)})
-    } // Template end` : ''}
+    } // Template end`
+        : ""
+    }
   }, [])
 
   return (
@@ -141,26 +161,40 @@ function Navbar({ toggle, setToggle, userAuth, setUserAuth, setDisplay }) {
   const profileHandler = e => {
     // touch the auth check api and display the result
 
-    ${tm1 ? `// Template - 1 session + proxy
+    ${
+      tm1
+        ? `// Template - 1 session + proxy
     fetch(baseURL + "/user/profile" )
     .then(response => response.json())
-    .catch(err => setDisplay(pre=> ({ err: err}) )) // Template end` : ''}
+    .catch(err => setDisplay(pre=> ({ err: err}) )) // Template end`
+        : ""
+    }
 
 
-    ${tm2 ? `// Template - 2  jsonwebtoken + cookie-parser
+    ${
+      tm2
+        ? `// Template - 2  jsonwebtoken + cookie-parser
     fetch(baseURL + "/user/profile", {credentials: 'include'})
     .then(response => response.json())
     .then(data => setDisplay(pre=> ({ data: data})))
-    .catch(err => setDisplay(pre=> ({ err: err}) )) // Template end` : ''}
+    .catch(err => setDisplay(pre=> ({ err: err}) )) // Template end`
+        : ""
+    }
 
-    ${tm3 ? `// Template - 3  jsonwebtoken + axios(.create) save token in localStorage
+    ${
+      tm3
+        ? `// Template - 3  jsonwebtoken + axios(.create) save token in localStorage
     AWT.get('/user/profile')
       .then(({ data }) => setDisplay(pre=> ({ data: data})))
-      .catch(err => setDisplay(pre=> ({ err: err}) )) // Template end` : ''}
+      .catch(err => setDisplay(pre=> ({ err: err}) )) // Template end`
+        : ""
+    }
   };
   
   const logOutHandler = e => {
-    ${tm1 ? `fetch(baseURL + '/user/logout')
+    ${
+      tm1
+        ? `fetch(baseURL + '/user/logout')
     .then(response => response.json())
     .then(data =>{
       if (data.logout) {
@@ -172,10 +206,14 @@ function Navbar({ toggle, setToggle, userAuth, setUserAuth, setDisplay }) {
         err: {}
       })}
     })
-    .catch(err => setDisplay(pre=> ({errCode: 17, data: { msg: "wow something wrong" , ...err}, path: 'user logout'}) ))` : ''}
+    .catch(err => setDisplay(pre=> ({errCode: 17, data: { msg: "wow something wrong" , ...err}, path: 'user logout'}) ))`
+        : ""
+    }
 
 
-    ${tm2 ? `// call backend to destroy cookie
+    ${
+      tm2
+        ? `// call backend to destroy cookie
     fetch(baseURL + '/user/logout', {credentials: 'include'})
     .then(response => response.json())
     .then(data =>{
@@ -188,9 +226,13 @@ function Navbar({ toggle, setToggle, userAuth, setUserAuth, setDisplay }) {
         err: {}
       })}
     })
-    .catch(err => setDisplay(pre=> ({errCode: 17, data: { msg: "wow something wrong" , ...err}, path: 'user logout'}) ))` : ''}
+    .catch(err => setDisplay(pre=> ({errCode: 17, data: { msg: "wow something wrong" , ...err}, path: 'user logout'}) ))`
+        : ""
+    }
 
-    ${tm3 ? `// Template - 3  jsonwebtoken + axios(.create)
+    ${
+      tm3
+        ? `// Template - 3  jsonwebtoken + axios(.create)
     localStorage.clear()
     setUserAuth(pre=>({...pre, login: false}))
     // navigate to another page to trigger rerender
@@ -198,7 +240,9 @@ function Navbar({ toggle, setToggle, userAuth, setUserAuth, setDisplay }) {
       msg: "You logged out",
       data: {},
       err: {}
-    })` : ''}
+    })`
+        : ""
+    }
   }
 
   return (
@@ -258,19 +302,24 @@ function SingUp({setUserAuth, setToggle, setDisplay}) {
     e.preventDefault()
     // data to send to backend
     const dataToSend = {
-      ${registrationInputs.map(x=>{
-        if(x.type === "checkbox"){
-          return `${x.name}: e.target.${x.name}.checked`
-        }
-        else if(x.type != "button"){
-          return `${x.name}: e.target.${x.name}.value`
-        }
-        
-      }).join(',\n      ').split(',').filter(x=>x).join(',')}
+      ${registrationInputs
+        .map((x) => {
+          if (x.type === "checkbox") {
+            return `${x.name}: e.target.${x.name}.checked`;
+          } else if (x.type != "button") {
+            return `${x.name}: e.target.${x.name}.value`;
+          }
+        })
+        .join(",\n      ")
+        .split(",")
+        .filter((x) => x)
+        .join(",")}
     };
 
     // fetch with post method
-    ${tm1 ? `// Template - 1 session + proxy
+    ${
+      tm1
+        ? `// Template - 1 session + proxy
     fetch(baseURL+'/user/create', {
       method: 'POST',
       body: JSON.stringify(dataToSend),
@@ -291,10 +340,14 @@ function SingUp({setUserAuth, setToggle, setDisplay}) {
                })
         setDisplay(prev=>({...prev, msg: "Welcome Join Us", data: data}))
       })
-      .catch(error => setDisplay(prev=>({...prev, msg: "WoW! Something wrong!", err: error}))); // template end here` : ''}
+      .catch(error => setDisplay(prev=>({...prev, msg: "WoW! Something wrong!", err: error}))); // template end here`
+        : ""
+    }
 
 
-      ${tm2 ? `// Template - 2  jsonwebtoken + cookie-parser
+      ${
+        tm2
+          ? `// Template - 2  jsonwebtoken + cookie-parser
       fetch(baseURL+'/user/create', {
         method: 'POST',
         body: JSON.stringify(dataToSend),
@@ -316,9 +369,13 @@ function SingUp({setUserAuth, setToggle, setDisplay}) {
                  })
           setDisplay(prev=>({...prev, msg: "Welcome Join Us", data: data}))
         })
-        .catch(error => setDisplay(prev=>({...prev, msg: "WoW! Something wrong!", err: error}))); // template end here` : ''}
+        .catch(error => setDisplay(prev=>({...prev, msg: "WoW! Something wrong!", err: error}))); // template end here`
+          : ""
+      }
 
-      ${tm3 ? `// Template - 3  jsonwebtoken + axios(.create) save token in localStorage
+      ${
+        tm3
+          ? `// Template - 3  jsonwebtoken + axios(.create) save token in localStorage
       AWT.post(baseURL + '/user/create', dataToSend)
         .then(({ data }) => {
           // save token in localStorage
@@ -335,27 +392,37 @@ function SingUp({setUserAuth, setToggle, setDisplay}) {
             return data.errCode ? { ...prev, err: data, msg: data.data.msg } : { ...prev, data: data, msg: "Welcome Join Us" };
           })
         })
-        .catch(error => setDisplay(prev => ({ ...prev, msg: "WoW! Something wrong!", err: error }))); // template end here` : ''}
+        .catch(error => setDisplay(prev => ({ ...prev, msg: "WoW! Something wrong!", err: error }))); // template end here`
+          : ""
+      }
   }
   return (
     <div className="signup container">
       <h3 className="text-center">Sign up</h3>
       <form onSubmit={signUpHandler}>
-      ${registrationInputs.map((x,i)=>{
-        if(x.type == "button"){
-          return `<div className="form-floating mb-3"><input type="${x.type}" name="${x.name}" value="${x.name}"/></div>`
-        }
-        else {
-          return `
+      ${registrationInputs
+        .map((x, i) => {
+          if (x.type == "button") {
+            return `<div className="form-floating mb-3"><input type="${x.type}" name="${x.name}" value="${x.name}" className="btn btn-light"/></div>`;
+          } else if (x.type == "checkbox") {
+            return `
+          <div className="form-check mb-3">
+            <input type="${x.type}" name="${x.name}" id="${x.name}" className="form-check-input my-1"/>
+            <label htmlFor="${x.name}" className="form-check-label">${x.name}</label>
+            </div>
+        `;
+          } else {
+            return `
           <div className="form-floating mb-3">
             <input type="${x.type}" name="${x.name}" id="${x.name}" className="form-control my-1" placeholder=" "/>
             <label htmlFor="${x.name}">${x.name}</label>
             </div>
-        `
-        }
-      }).join('')}
+        `;
+          }
+        })
+        .join("")}
         <div>
-          <button type="submit" className="btn btn-primary m-3">Sign up</button>
+          <button type="submit" className="btn btn-primary m-3 px-5 py-2">Sign up</button>
         </div>
       </form>
 
@@ -371,19 +438,24 @@ function LogIn({setUserAuth, setToggle, setDisplay}) {
     e.preventDefault()
     // data to send to backend
     const dataToSend = {
-      ${loginInputs.map(x=>{
-        if(x.type === "checkbox"){
-          return `${x.name}: e.target.${x.name}.checked`
-        }
-        else if(x.type != "button"){
-          return `${x.name}: e.target.${x.name}.value`
-        }
-        
-      }).join(',\n      ').split(',').filter(x=>x).join(',')}
+      ${loginInputs
+        .map((x) => {
+          if (x.type === "checkbox") {
+            return `${x.name}: e.target.${x.name}.checked`;
+          } else if (x.type != "button") {
+            return `${x.name}: e.target.${x.name}.value`;
+          }
+        })
+        .join(",\n      ")
+        .split(",")
+        .filter((x) => x)
+        .join(",")}
     };
 
     // fetch with post method
-    ${tm1 ? `// Template - 1 session + proxy
+    ${
+      tm1
+        ? `// Template - 1 session + proxy
     fetch(baseURL + '/user/login', {
       method: 'POST',
       body: JSON.stringify(dataToSend),
@@ -403,9 +475,13 @@ function LogIn({setUserAuth, setToggle, setDisplay}) {
           logOut: true
         });
       })
-      .catch(error => setDisplay(prev => ({ ...prev, msg: "WoW! Something wrong!", err: error }))); // template end here` : ''}
+      .catch(error => setDisplay(prev => ({ ...prev, msg: "WoW! Something wrong!", err: error }))); // template end here`
+        : ""
+    }
 
-      ${tm2 ? `// Template - 2  jsonwebtoken + cookie-parser
+      ${
+        tm2
+          ? `// Template - 2  jsonwebtoken + cookie-parser
       fetch(baseURL + '/user/login', {
         method: 'POST',
         body: JSON.stringify(dataToSend),
@@ -426,9 +502,13 @@ function LogIn({setUserAuth, setToggle, setDisplay}) {
             logOut: true
           });
         })
-        .catch(error => setDisplay(prev => ({ ...prev, msg: "WoW! Something wrong!", err: error }))); // template end here` : ''}
+        .catch(error => setDisplay(prev => ({ ...prev, msg: "WoW! Something wrong!", err: error }))); // template end here`
+          : ""
+      }
 
-        ${tm3 ? `// Template - 3  jsonwebtoken + axios(.create) save token in localStorage
+        ${
+          tm3
+            ? `// Template - 3  jsonwebtoken + axios(.create) save token in localStorage
         AWT.post(baseURL + '/user/login', dataToSend)
           .then(({ data }) => {
             if (data.login) {
@@ -445,28 +525,38 @@ function LogIn({setUserAuth, setToggle, setDisplay}) {
               return data.errCode ? { ...prev, err: data, msg: data.data.msg } : { ...prev, data: data, msg: "Welcome Join Us" };
             })
           })
-          .catch(error => setDisplay(prev => ({ ...prev, msg: "WoW! Something wrong!", err: error }))); // template end here` : ''}
+          .catch(error => setDisplay(prev => ({ ...prev, msg: "WoW! Something wrong!", err: error }))); // template end here`
+            : ""
+        }
 
   }
   return (
     <div className="login container">
       <h3 className="text-center">Log in</h3>
       <form onSubmit={loginHandler}>
-      ${loginInputs.map((x,i)=>{
-        if(x.type == "button"){
-          return `<div className="form-floating mb-3"><input type="${x.type}" name="${x.name}" value="${x.name}"/></div>`
-        }
-        else {
-          return `
+      ${loginInputs
+        .map((x, i) => {
+          if (x.type == "button") {
+            return `<div className="form-floating mb-3"><input type="${x.type}" name="${x.name}" value="${x.name}" className="btn btn-light"/></div>`;
+          } else if (x.type == "checkbox") {
+            return `
+          <div className="form-check mb-3">
+            <input type="${x.type}" name="${x.name}" id="${x.name}" className="form-check-input my-1"/>
+            <label htmlFor="${x.name}" className="form-check-label">${x.name}</label>
+            </div>
+        `;
+          } else {
+            return `
           <div className="form-floating mb-3">   
             <input type="${x.type}" name="${x.name}" id="${x.name}" className="form-control my-1" placeholder=" "/>
             <label htmlFor="${x.name}">${x.name}</label>
             </div>
-        `
-        }
-      }).join('')}
+        `;
+          }
+        })
+        .join("")}
         <div>
-          <button type="submit" className="btn btn-primary m-3">Log In</button>
+          <button type="submit" className="btn btn-primary m-3 px-5 py-2">Log In</button>
         </div>
       </form>
 
@@ -492,21 +582,20 @@ const style = {
   }
 }
 
-`
+`;
 
-const trimEmptyLine =require('./tools/trimEmptyLine');
-appJsTemplate = trimEmptyLine(appJsTemplate)
+  const trimEmptyLine = require("./tools/trimEmptyLine");
+  appJsTemplate = trimEmptyLine(appJsTemplate);
 
-if (file) {
-  const path = require('path');
-  const fs = require('fs');
-  fs.writeFile(path.join(__dirname, filePath ), appJsTemplate, (err) => {
-if (err) throw err;
-});
-}
+  if (file) {
+    const path = require("path");
+    const fs = require("fs");
+    fs.writeFile(path.join(__dirname, filePath), appJsTemplate, (err) => {
+      if (err) throw err;
+    });
+  }
 
-return appJsTemplate
-}
+  return appJsTemplate;
+};
 
-
-module.exports =appJsTemplate_gen
+module.exports = appJsTemplate_gen;

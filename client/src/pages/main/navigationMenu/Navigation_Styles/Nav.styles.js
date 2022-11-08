@@ -239,21 +239,21 @@ export const NavbarLinkExtendedMobile = styled(NavLink)`
 `;
 
 export const ThemeBTN = styled.button`
-  border: 1px solid white;
-  width: 12px;
-  height: 12px;
+  border: none;
   border-radius: 50%;
-  padding: 0.1rem;
+  padding: 0.2rem;
   text-align: center;
   cursor: pointer;
-  box-shadow: 0 0 12px gold;
-  background-color: gold;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
+  box-shadow: 0 0 12px silver;
   &.dark-theme {
     color: white;
+
+    background-color: silver;
   }
   &.light-theme {
-    color: black;
+    color: white;
+    box-shadow: 0 0 12px gold;
   }
 `;
 

@@ -1,7 +1,4 @@
-export const backEndFormData = [
-  "dotenv",
-  "nodemailer"
-];
+export const backEndFormData = ["dotenv", "nodemailer"];
 
 export const backendTemplates = [
   { template: "tm1_session", name: "SESSION" },
@@ -10,15 +7,52 @@ export const backendTemplates = [
 ];
 
 export const initializingServerData = [
-  { name: "PROJECT DESCRIPTION", nameForTemplate: "project_description" },
-  { name: "PROJECT AUTHOR", nameForTemplate: "project_author" },
-  { name: "PROJECT LICENSE", nameForTemplate: "project_license" },
-  { name: "SECRET KEY", nameForTemplate: "secretKey" },
-  { name: "EXPIRE TIME", nameForTemplate: "expireTime" },
-  { name: "PORT", nameForTemplate: "port" },
-  { name: "FRONTEND ORIGIN", nameForTemplate: "frontendOrigin" },
-  { name: "BACKEND ORIGIN", nameForTemplate: "backendOrigin" },
-  { name: "MONGODB URI", nameForTemplate: "mongodbURI" },
+  {
+    name: "PROJECT NAME",
+    nameForTemplate: "project_name",
+    placeholder: "lazy_devs",
+  },
+  {
+    name: "PROJECT DESCRIPTION",
+    nameForTemplate: "project_description",
+    placeholder: "user authentication boilerplate",
+  },
+  {
+    name: "PROJECT AUTHOR",
+    nameForTemplate: "project_author",
+    placeholder: "sufaz",
+  },
+  {
+    name: "PROJECT LICENSE",
+    nameForTemplate: "project_license",
+    placeholder: "dci - digital career institute",
+  },
+  {
+    name: "SECRET KEY",
+    nameForTemplate: "secretKey",
+    placeholder: "secret_key",
+  },
+  {
+    name: "EXPIRE TIME",
+    nameForTemplate: "expireTime",
+    placeholder: "2592000000",
+  },
+  { name: "PORT", nameForTemplate: "port", placeholder: "5000" },
+  {
+    name: "FRONTEND ORIGIN",
+    nameForTemplate: "frontendOrigin",
+    placeholder: "http://localhost:3000",
+  },
+  {
+    name: "BACKEND ORIGIN",
+    nameForTemplate: "backendOrigin",
+    placeholder: "http://localhost:",
+  },
+  {
+    name: "MONGODB URI",
+    nameForTemplate: "mongodbURI",
+    placeholder: "mongodb://localhost:27017",
+  },
 ];
 
 export const nodemailerSetting = [

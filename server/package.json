@@ -4,7 +4,7 @@
   "description": "Creating authentication form for developers",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js --ignore ./controllers/codeTemplates/"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",

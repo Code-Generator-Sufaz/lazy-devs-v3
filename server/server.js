@@ -3,15 +3,16 @@ const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
 const mongoose = require('mongoose');
+const path = require('path');
 const authRoutes = require('./routes/authRoutes');
 const tempRoutes = require('./routes/tempRoutes');
 const userRoutes = require('./routes/userRoutes');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const passportOauth = require('./passportOauth');
-const config = require('../config');
+const config = require('./config');
 const MongoStore = require('connect-mongo');
-const otherRoutes = require('./routes/othersRoutes')
+const otherRoutes = require('./routes/othersRoutes');
 
 app.use(express.json());
 mongoose.connect(process.env.DB_LINK, () => {
@@ -28,12 +29,13 @@ app.use(
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: process.env.DB_LINK }),
+    store: MongoStore.create({
+      mongoUrl: process.env.DB_LINK,
+    }),
   })
 );
 
 if (config.model == 'deploy') {
-  const path = require('path');
   app.use(express.static(path.join(__dirname, 'public')));
 }
 
@@ -43,8 +45,7 @@ app.get('/userToRender', (req, res) => {
 app.use('/authentication', authRoutes);
 app.use('/code', tempRoutes);
 app.use('/user', userRoutes);
-app.use('/other', otherRoutes)
-
+app.use('/other', otherRoutes);
 
 passportOauth(app);
 

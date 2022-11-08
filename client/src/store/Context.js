@@ -9,7 +9,7 @@ function ContextProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Modal and project name
-  const [projectName, setProjectName] = useState("");
+  const [templateName, setTemplateName] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
   // Notifications
@@ -122,8 +122,8 @@ function ContextProvider({ children }) {
         setSelectedRadio,
         openModal,
         setOpenModal,
-        projectName,
-        setProjectName,
+        templateName,
+        setTemplateName,
         profileTemplates,
         setProfileTemplates,
         inputsEditorOpen,
