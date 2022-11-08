@@ -8,7 +8,7 @@ export default function Registration({ children }) {
 const Container = styled.div`
   height: 90vh;
   width: 80%;
-  margin: 0 auto;
+  margin: 100px auto;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
