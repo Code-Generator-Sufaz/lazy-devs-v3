@@ -14,26 +14,20 @@ const configReqBody = (obj) => {
   ) {
     obj.backend_packages.bcrypt = true;
   }
-  console.log("0", obj.registrationInputs);
   // fix the registrationInputs and loginInputs
   if (obj.registrationInputs.length == 1) {
     obj.registrationInputs[0].main = true;
     obj.loginInputs = obj.registrationInputs;
-    console.log("0.1");
   } else {
     // find the main
     let mainInput = obj.registrationInputs.filter((x) => x.main)[0];
-    console.log("0.2");
     if (!mainInput) {
       // there is no main. let the first to be main, update mainInput 1- unique,
       obj.registrationInputs[0].main = true;
       mainInput = obj.registrationInputs[0];
-      console.log("0.3");
     }
-
     // push maininput to loginInputs
     obj.loginInputs.push(mainInput);
-    console.log("1", obj.loginInputs);
     // only the registrationInputs has "password"  and loginInputs has no "password", will push the first "password" in registrationInputs to loginInputs
     // push type = password to loginInputs
     if (
@@ -43,7 +37,6 @@ const configReqBody = (obj) => {
       obj.loginInputs.push(
         obj.registrationInputs.filter((x) => x.type == "password")[0]
       );
-    console.log("2", obj.loginInputs);
     // delete the inputs with same name if there is one
     obj.loginInputs = obj.loginInputs.filter((x) => {
       if (x.name != mainInput.name) return x;
@@ -81,25 +74,27 @@ const configReqBody = (obj) => {
   }
 
   // set default values
-  obj.projectName
-    ? (obj.project_name = obj.projectName)
-    : (obj.project_name = "lazy_devs");
+  obj.project_name?.trim() ? null : (obj.project_name = "lazy_devs");
 
-  obj.project_description
+  obj.project_description?.trim()
     ? null
-    : (obj.project_description = "user authentication template");
-  obj.project_author ? null : (obj.project_author = "sufaz");
-  obj.project_license ? null : (obj.project_license = "MIT");
+    : (obj.project_description = "user authentication boilerplate");
+  obj.project_author?.trim() ? null : (obj.project_author = "sufaz");
+  obj.project_license?.trim()
+    ? null
+    : (obj.project_license = "dci - digital career institute");
 
-  obj.secretKey ? null : (obj.secretKey = "sufaz");
-  obj.expireTime ? null : (obj.expireTime = 2592000000);
+  obj.secretKey?.trim() ? null : (obj.secretKey = "secret_key");
+  obj.expireTime?.trim() ? null : (obj.expireTime = 2592000000);
 
-  obj.frontendOrigin ? null : (obj.frontendOrigin = "http://localhost:3000");
-  obj.backendOrigin ? null : (obj.backendOrigin = "http://localhost:");
-  obj.port ? null : (obj.port = 5000);
-  obj.mongodbURI ? null : (obj.mongodbURI = "mongodb://localhost:27017");
-  console.log("3", obj.loginInputs);
-  console.log("4", obj.registrationInputs);
+  obj.frontendOrigin?.trim()
+    ? null
+    : (obj.frontendOrigin = "http://localhost:3000");
+  obj.backendOrigin?.trim() ? null : (obj.backendOrigin = "http://localhost:");
+  obj.port?.trim() ? null : (obj.port = 5000);
+  obj.mongodbURI?.trim()
+    ? null
+    : (obj.mongodbURI = "mongodb://localhost:27017");
   return obj;
 };
 
