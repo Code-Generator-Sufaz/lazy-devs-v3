@@ -110,7 +110,6 @@ export default function InputForm() {
   };
 
   const saveToDataBase = async () => {
-
     const finalData = { ...templates, createdBy: user._id, templateName };
 
     setOpenModal(true);
