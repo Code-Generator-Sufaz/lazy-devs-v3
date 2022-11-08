@@ -111,7 +111,7 @@ export default function InputForm() {
 
   const saveToDataBase = async () => {
     const finalData = { ...templates, createdBy: user._id, projectName };
-    console.log(finalData);
+ 
     setOpenModal(true);
 
     try {

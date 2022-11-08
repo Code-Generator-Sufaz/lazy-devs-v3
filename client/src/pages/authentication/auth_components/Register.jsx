@@ -29,7 +29,7 @@ export default function Register() {
     setUserInput((prev) => {
       return {
         ...prev,
-        [e.target.name]: inputValue,
+        [e.target.name]: inputValue.trim(),
       };
     });
   };
@@ -73,87 +73,89 @@ export default function Register() {
         <p>Enter your details to create new account.</p>
       </TitleContainer>
       <AuthContainer>
-        <PassportContainer/>
+        <PassportContainer />
         <Divider>
-          <div><p>or</p></div>
+          <div>
+            <p>or</p>
+          </div>
         </Divider>
-      <StyledFormContainer>
-        <InputDiv>
-          <StyledTextField
-          className='text-field'
-          size="small"
-            name="email"
-            id="filled-basic"
-            label="Email"
-            variant="filled"
-            onChange={onChangeHandler}
-          />
-          {emailError && <p>{emailError}</p>}
-        </InputDiv>
-        <InputDiv style={{ position: 'relative' }}>
-          <StyledTextField
-          className='text-field'
-            name="password"
-            id="filled-basic"
-            label="Password"
-            variant="filled"
-            type={PasswordInputType}
-            autoComplete='current-password'
-            onChange={onChangeHandler}
-          />
-          <IconSpan className='password-toggle-icon'>{ToggleIcon}</IconSpan>
+        <StyledFormContainer>
+          <InputDiv>
+            <StyledTextField
+              className='text-field'
+              size='small'
+              name='email'
+              id='filled-basic'
+              label='Email'
+              variant='filled'
+              onChange={onChangeHandler}
+            />
+            {emailError && <p>{emailError}</p>}
+          </InputDiv>
+          <InputDiv style={{ position: 'relative' }}>
+            <StyledTextField
+              className='text-field'
+              name='password'
+              id='filled-basic'
+              label='Password'
+              variant='filled'
+              type={PasswordInputType}
+              autoComplete='current-password'
+              onChange={onChangeHandler}
+            />
+            <IconSpan className='password-toggle-icon'>{ToggleIcon}</IconSpan>
 
-          {passwordError && <p>{passwordError}</p>}
-        </InputDiv>
-        <InputDiv>
-          <StyledTextField
-          className='text-field'
-          size="small"
-            name="passwordConfirmation"
-            id="filled-basic"
-            label="Confirm Password"
-            variant="filled"
-            type={PasswordInputType}
-            autoComplete='current-password'
-            onChange={onChangeHandler}
-          />
-          {passwordConfirmError && <p>{passwordConfirmError}</p>}
-        </InputDiv>
-        <InputDiv>
-          <StyledTextField
-          className='text-field'
-          size="small"
-            id="filled-basic"
-            label="First Name"
-            variant="filled"
-            type="text"
-            name="firstName"
-            onChange={onChangeHandler}
-          />
-          {firstNameError && <p>{firstNameError}</p>}
-        </InputDiv>
-        <InputDiv>
-          <StyledTextField
-          className='text-field'
-            id="filled-basic"
-            label="Last Name"
-            variant="filled"
-            type="text"
-            name="lastName"
-            onChange={onChangeHandler}
-          />
-          {lastNameError && <p>{lastNameError}</p>}
-        </InputDiv>
-        <ButtonContainer>
-          <button onClick={registerHandler} value='Register'>
-            Register
-          </button>
-          {/* <GoogleLoginCom /> */}
-        </ButtonContainer>
-        <p style={{color:'black', marginTop:'1rem'}}>
-          Already have an account? Login <NavLink to="/login">here!</NavLink>
-        </p>
-      </StyledFormContainer>
+            {passwordError && <p>{passwordError}</p>}
+          </InputDiv>
+          <InputDiv>
+            <StyledTextField
+              className='text-field'
+              size='small'
+              name='passwordConfirmation'
+              id='filled-basic'
+              label='Confirm Password'
+              variant='filled'
+              type={PasswordInputType}
+              autoComplete='current-password'
+              onChange={onChangeHandler}
+            />
+            {passwordConfirmError && <p>{passwordConfirmError}</p>}
+          </InputDiv>
+          <InputDiv>
+            <StyledTextField
+              className='text-field'
+              size='small'
+              id='filled-basic'
+              label='First Name'
+              variant='filled'
+              type='text'
+              name='firstName'
+              onChange={onChangeHandler}
+            />
+            {firstNameError && <p>{firstNameError}</p>}
+          </InputDiv>
+          <InputDiv>
+            <StyledTextField
+              className='text-field'
+              id='filled-basic'
+              label='Last Name'
+              variant='filled'
+              type='text'
+              name='lastName'
+              onChange={onChangeHandler}
+            />
+            {lastNameError && <p>{lastNameError}</p>}
+          </InputDiv>
+          <ButtonContainer>
+            <button onClick={registerHandler} value='Register'>
+              Register
+            </button>
+            {/* <GoogleLoginCom /> */}
+          </ButtonContainer>
+          <p style={{ color: 'black', marginTop: '1rem' }}>
+            Already have an account? Login <NavLink to='/login'>here!</NavLink>
+          </p>
+        </StyledFormContainer>
       </AuthContainer>
     </Registration>
   );
@@ -178,15 +180,14 @@ const StyledFormContainer = styled(FormContainer)`
 `;
 
 const InputDiv = styled.div`
-margin-bottom: 1rem;
+  margin-bottom: 1rem;
   p {
     color: tomato;
   }
-`
+`;
 
 const Divider = styled.div`
   display: flex;
   width: 100%;
-  justify-content:center;
-`
-
+  justify-content: center;
+`;
