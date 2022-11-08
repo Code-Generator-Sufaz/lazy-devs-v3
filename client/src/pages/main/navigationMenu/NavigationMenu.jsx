@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BsLightbulbFill, BsLightbulb } from "react-icons/bs";
+import { BsMoon, BsSun } from "react-icons/bs";
 import {
   NavbarContainer,
   LeftContainer,
@@ -66,7 +66,7 @@ function NavigationMenu() {
         <LeftContainer>
           <NavbarLinkContainer>
             <ThemeBTN onClick={() => setDarkTheme(!darkTheme)}>
-              {darkTheme ? <BsLightbulbFill /> : <BsLightbulb />}
+              {darkTheme ? <BsMoon /> : <BsSun />}
             </ThemeBTN>
             {pages.map((page, i) => (
               <>

@@ -38,6 +38,7 @@ export default function ServerInitForm() {
                   type="number"
                   name={el.nameForTemplate}
                   onChange={onServerInitInputsChangeHandler}
+                  placeholder={el.placeholder}
                 />
               </LabelInputWrapper>
             );
@@ -55,6 +56,7 @@ export default function ServerInitForm() {
                 type="text"
                 name={el.nameForTemplate}
                 onChange={onServerInitInputsChangeHandler}
+                placeholder={el.placeholder}
               />
             </LabelInputWrapper>
           );
@@ -96,6 +98,9 @@ const LabelInputWrapper = styled.div`
     border-radius: 0.2rem;
     padding: 0.4rem;
     font-size: 1rem;
+    &::placeholder {
+      font-size: 12px;
+    }
   }
   &.light-theme {
     label {
