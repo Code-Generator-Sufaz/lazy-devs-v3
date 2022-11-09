@@ -56,8 +56,8 @@
   // 2 else if req.body.backend_packages.filter(x=>x='bcrypt') is true, bt is also true
   else if(req.body.backend_packages.bcrypt) bt = true
   
-  let server_js_full = `
-  // importing dependencies
+
+let server_js = `
   const express = require('express');
   ${bt ? "const bcrypt = require('bcrypt');" : ''}
   const cors = require('cors');
@@ -87,36 +87,6 @@
       if (err) throw (err)
       console.log(${req.body.mongoConnectMessage ? req.body.mongoConnectMessage : `"MongoDB is connected"`})
   });
-  
-  ${nodemailer ? `// nodemailer settings with mailtrap
-  // https://nodemailer.com/about/
-  const transporter = nodemailer.createTransport({
-      host: "${req.body.nodemailerSetting.host || `smtp.mailtrap.io`}",
-      port: ${req.body.nodemailerSetting.port || `25 || 465 || 587 || 2525`},
-      auth: {
-          user: ${req.body.nodemailerSetting.user ? `"${req.body.nodemailerSetting.user}"` : 'process.env.EMAIL_USER'},
-          pass: ${req.body.nodemailerSetting.pass ? `"${req.body.nodemailerSetting.pass}"` : 'process.env.EMAIL_PASS'}
-      }
-  });
-  // function to send email using transporter
-  const nodeMailerOrigin = "http://localhost:5000/user"
-  function sendEmail(mailTo, subject, message) {
-      return new Promise((resolve, reject) => {
-          transporter.sendMail({
-              from: "${req.body.nodemailerSetting.senderEmail ? req.body.nodemailerSetting.senderEmail : 'process.env.SENDER'}",
-              to: mailTo,
-              subject: subject,
-              html: message // sending html formed code
-          })
-              .then(data => {
-                  resolve(data);
-              })
-              .catch(error => {
-                  reject({ errCode: 12, data: error, path: 'nodemailer.sendEmail' });
-              })
-      })
-  };` : ''}
-  
   // middleware
   app.use(express.json())
   app.use(express.urlencoded({extended: false}))
@@ -138,6 +108,50 @@
   
   ${tm3 ? `// Template - 3  jsonwebtoken + axios(.create) save token in local storage
   app.use(cors())` : ''}
+  `
+
+let email_js = `
+${nodemailer ? `// nodemailer settings with mailtrap
+// https://nodemailer.com/about/
+const transporter = nodemailer.createTransport({
+    host: "${req.body.nodemailerSetting.host || `smtp.mailtrap.io`}",
+    port: ${req.body.nodemailerSetting.port || `25 || 465 || 587 || 2525`},
+    auth: {
+        user: ${req.body.nodemailerSetting.user ? `"${req.body.nodemailerSetting.user}"` : 'process.env.EMAIL_USER'},
+        pass: ${req.body.nodemailerSetting.pass ? `"${req.body.nodemailerSetting.pass}"` : 'process.env.EMAIL_PASS'}
+    }
+});
+// function to send email using transporter
+const nodeMailerOrigin = "http://localhost:5000/user"
+function sendEmail(mailTo, subject, message) {
+    return new Promise((resolve, reject) => {
+        transporter.sendMail({
+            from: "${req.body.nodemailerSetting.senderEmail ? req.body.nodemailerSetting.senderEmail : 'process.env.SENDER'}",
+            to: mailTo,
+            subject: subject,
+            html: message // sending html formed code
+        })
+            .then(data => {
+                resolve(data);
+            })
+            .catch(error => {
+                reject({ errCode: 12, data: error, path: 'nodemailer.sendEmail' });
+            })
+    })
+};` : ''}`
+
+
+
+
+
+
+
+
+  let server_js_full = `
+  
+ 
+  
+  
   
   // Routers
   // index router
