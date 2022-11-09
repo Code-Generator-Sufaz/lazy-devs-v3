@@ -10,20 +10,20 @@ export const NavbarContainer = styled.nav`
   position: relative;
   z-index: 100000;
   overflow-y: hidden;
-  @media (min-width: 900px) {
+  @media (min-width: 920px) {
     height: 80px;
   }
 `;
 
 export const RightContainer = styled.div`
-  flex: 30%;
+  flex: 20%;
   display: flex;
   align-items: center;
   padding-left: 5%;
 `;
 
 export const LeftContainer = styled.div`
-  flex: 70%;
+  flex: 80%;
   display: flex;
   justify-content: flex-end;
   padding-right: 50px;
@@ -41,16 +41,18 @@ export const NavbarInnerContainer = styled.div`
 
   &.dark-theme {
     background: var(--backgroundColor);
+    box-shadow: 0 0 10px var(--textColor);
   }
   &.light-theme {
     background: var(--lightBackgroundColor);
+    box-shadow: 0 0 10px var(--warningColor);
   }
 `;
 
 export const NavbarLinkContainer = styled.div`
   display: flex;
   align-items: center;
-  @media (max-width: 900px) {
+  @media (max-width: 920px) {
     display: none;
   }
 `;
@@ -61,7 +63,7 @@ export const NavbarLink = styled(NavLink)`
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
   margin: 10px;
-  @media (max-width: 900px) {
+  @media (max-width: 920px) {
     display: none;
   }
 `;
@@ -103,6 +105,8 @@ export const NavbarLinkExtended = styled(NavLink)`
       z-index: 100;
       transition: ease 0.3s all;
       border-radius: 4px;
+      width: 6.7rem;
+      text-align: center;
       &:hover {
         color: #302b63;
       }
@@ -289,7 +293,7 @@ export const OpenLinksButton = styled.button`
   right: 0;
   cursor: pointer;
   color: var(--textColor);
-  @media (min-width: 900px) {
+  @media (min-width: 920px) {
     display: none;
   }
 `;
@@ -313,7 +317,7 @@ export const NavbarExtendedContainer = styled.div`
   &.dark-theme {
     background: var(--backgroundColor);
   }
-  @media (min-width: 900px) {
+  @media (min-width: 920px) {
     display: none;
   }
 `;
@@ -423,7 +427,7 @@ export const NavHamburger = styled.div`
 
   ${"" /* ${"" /* MEDIA QUERY FOR TABLET */}
 
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 920px) {
     display: none;
   }
 
