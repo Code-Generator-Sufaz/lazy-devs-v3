@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const codeSchema = new Schema(
   {
-    projectName: {
+    templateName: {
       type: String,
       unique: true,
     },
@@ -12,14 +12,14 @@ const codeSchema = new Schema(
     frontEndPackageJSON: String,
     backendPackageJSON: String,
     backendDotenv: String,
-    tree:{
-      type: String
+    tree: {
+      type: String,
     },
-    createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
+    createdBy: { type: Schema.Types.ObjectId, ref: "User" },
   },
   { timestamps: true }
 );
 
-const Code = mongoose.model('Code', codeSchema);
+const Code = mongoose.model("Code", codeSchema);
 
 module.exports = Code;
