@@ -16,4 +16,8 @@ const Auth = styled.div`
     width: 70%;
     margin-top: 100px;
   }
+  @media (max-width: 500px) {
+    width: 90%;
+    margin-top: 100px;
+  }
 `;

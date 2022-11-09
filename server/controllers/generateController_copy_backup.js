@@ -1,8 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 // const { frontEndTemplate } = require("../../reactMainTemplate");
 exports.generateController = async (req, res, next) => {
-  console.log(req.body);
   try {
     const backendTemplate = `const express=require('express');
   const mongoose=require('mongoose');
@@ -13,7 +12,7 @@ exports.generateController = async (req, res, next) => {
     }${
       req.body.expressValidator
         ? "\nconst {check,validationResult}=require('express-validator')"
-        : ''
+        : ""
     }
   const app = express()
   const { isEmail } = require('validator');${
@@ -23,7 +22,7 @@ exports.generateController = async (req, res, next) => {
   const PORT=process.env.PORT || 6666;
   const DB_LINK=${
     req.body.dotenv
-      ? 'process.env.DB_LINK'
+      ? "process.env.DB_LINK"
       : '"mongodb://localhost:27017/templateDemo"'
   };
   // CUSTOMIZED ERROR HANDLER
@@ -40,7 +39,7 @@ exports.generateController = async (req, res, next) => {
       console.log('Database connected')
   })
   app.use(cors(${
-    req.body.jwt ? '{credentials:true, origin: frontendOrigin}' : ''
+    req.body.jwt ? "{credentials:true, origin: frontendOrigin}" : ""
   }))
   app.use(express.json())
   app.use(session(
@@ -61,14 +60,14 @@ exports.generateController = async (req, res, next) => {
         return `${item.name}:{\n    type:${
           (typeof item.type)[0].toUpperCase() + (typeof item.type).slice(1)
         },\n    required:${item.required},\n    unique:${
-          item.unique === true ? 'true,' : 'false,'
+          item.unique === true ? "true," : "false,"
         }${
-          item.name === 'email'
+          item.name === "email"
             ? `\n    validate:[isEmail,'Invalid Email']`
-            : ''
+            : ""
         }},\n`;
       })
-      .join('')}${req.body.nodemailer ? `\n   verified:false` : ''}
+      .join("")}${req.body.nodemailer ? `\n   verified:false` : ""}
   })
   const User = mongoose.model('User',userSchema)${
     req.body.nodemailer
@@ -95,7 +94,7 @@ const emailSender = async (mailTo, userId) => {
     throw new ExpressError(err);
   }
 };`
-      : ''
+      : ""
   }${
       req.body.expressValidator
         ? `\n
@@ -108,7 +107,7 @@ const emailSender = async (mailTo, userId) => {
       next();
     }
   }`
-        : ''
+        : ""
     }${
       req.body.expressValidator
         ? `\nconst userValidator=[\n${req.body.inputs
@@ -116,17 +115,17 @@ const emailSender = async (mailTo, userId) => {
               console.log(item.type);
               return item.type
                 ? `     check("${item.name}")${
-                    item.required === 'true' ? '' : '.optional()'
+                    item.required === "true" ? "" : ".optional()"
                   }${
-                    item.type === 'string'
+                    item.type === "string"
                       ? `.isString().isLength({${
-                          item.min ? `min:${item.min},` : ''
-                        }${item.max ? `max:${item.max}` : ''}}),\n`
-                      : `.isInt({${item.min ? `min:${item.min},` : ''}${
-                          item.max ? `max:${item.max}` : ''
+                          item.min ? `min:${item.min},` : ""
+                        }${item.max ? `max:${item.max}` : ""}}),\n`
+                      : `.isInt({${item.min ? `min:${item.min},` : ""}${
+                          item.max ? `max:${item.max}` : ""
                         }}),\n`
                   }${
-                    item.type === 'email'
+                    item.type === "email"
                       ? `.normalizeEmail({ gmail_remove_dots: false }).isEmail({}).withMessage('Invalid email address')
       .custom(async (val) => {
         const user = await User.findOne({ email: val });
@@ -135,11 +134,11 @@ const emailSender = async (mailTo, userId) => {
         } else {
           return true;
         }
-      })${item.required === true ? '' : ','}`
+      })${item.required === true ? "" : ","}`
                       : `${
-                          item.type === 'password'
+                          item.type === "password"
                             ? `.isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),`
-                            : item.name === 'passwordConfirm'
+                            : item.name === "passwordConfirm"
                             ? `.exists({ checkFalsy: true })
                           .withMessage('Please confirm your password')
                           .custom((val, { req }) => {
@@ -147,23 +146,23 @@ const emailSender = async (mailTo, userId) => {
                             else throw new ExpressError('Passwords do not match', 300);
                           })
                           `
-                            : ''
+                            : ""
                         }`
                   }${
-                    item.type !== 'number' && item.type !== 'email'
+                    item.type !== "number" && item.type !== "email"
                       ? `.isString().isLength({${
-                          item.min ? `min:${item.min}` : ''
-                        }${item.max ? `max:${item.max}` : ''}}),\n`
-                      : item.type === 'email'
-                      ? ''
-                      : `.isInt({${item.min ? `min:${item.min},` : ''}${
-                          item.max ? `max:${item.max}` : ''
+                          item.min ? `min:${item.min}` : ""
+                        }${item.max ? `max:${item.max}` : ""}}),\n`
+                      : item.type === "email"
+                      ? ""
+                      : `.isInt({${item.min ? `min:${item.min},` : ""}${
+                          item.max ? `max:${item.max}` : ""
                         }}),\n`
                   }`
                 : ``;
             })
-            .join('')}]`
-        : ''
+            .join("")}]`
+        : ""
     }
   
   //REGISTER CONTROLLER
@@ -181,7 +180,7 @@ const emailSender = async (mailTo, userId) => {
               user.password=hash
               const userEmailId=await bcrypt.hash(user._id,salt)
               `
-                  : ''
+                  : ""
               }
              const result=await User.create(user)
              ${
@@ -202,8 +201,8 @@ const emailSender = async (mailTo, userId) => {
                          req.body.jwt
                            ? `const token=jwt.sign(user,${
                                req.body.dotenv
-                                 ? 'process.env.JWT_KEY'
-                                 : 'testSecretKey'
+                                 ? "process.env.JWT_KEY"
+                                 : "testSecretKey"
                              },{algorithm: 'HS256', expiresIn: '1h'}
                      )
                      res
@@ -235,8 +234,8 @@ const emailSender = async (mailTo, userId) => {
     if(user){
       if(${
         req.body.bcrypt
-          ? 'bcrypt.compare(user.password,password)'
-          : 'user.password===password'
+          ? "bcrypt.compare(user.password,password)"
+          : "user.password===password"
       }){
     const loggedUser= await User.findOne({email:email}).select('-password')
     ${
@@ -246,7 +245,7 @@ const emailSender = async (mailTo, userId) => {
         `
         : req.body.jwt
         ? `const token=jwt.sign(loggedUser,${
-            req.body.dotenv ? process.env.SECRET_KEY : 'loginsecretkey'
+            req.body.dotenv ? process.env.SECRET_KEY : "loginsecretkey"
           },{expiresIn:'15m'})
           req.cookies.token=token
           res.json(token)
@@ -267,7 +266,7 @@ const emailSender = async (mailTo, userId) => {
 
   //ROUTES
   app.post('/register'${
-    req.body.expressValidator ? ',userValidator,userValidation' : ''
+    req.body.expressValidator ? ",userValidator,userValidation" : ""
   },registrationController);
   app.post('/login',loginController)
   
@@ -290,11 +289,9 @@ const emailSender = async (mailTo, userId) => {
 
     const newArr = [];
     for (let key of req.body.packages) {
-      console.log('XXX', Object.values(key));
       if (Object.values(key)[0] === true) newArr.push(Object.keys(key));
     }
 
-    console.log(newArr);
 
     const backendPackage_json = `
   {
@@ -310,12 +307,12 @@ const emailSender = async (mailTo, userId) => {
       "dependencies": {
           "express": "*",
           "mongoose": "*",
-          "cors": "*"${newArr.length > 0 ? ',' : ''}
+          "cors": "*"${newArr.length > 0 ? "," : ""}
           ${newArr
             .map((item, i) => {
               return `"${item}": "*"`;
             })
-            .join(',\n        ')}
+            .join(",\n        ")}
   
   
       }
@@ -326,16 +323,16 @@ const emailSender = async (mailTo, userId) => {
          import React, { useEffect, useState } from 'react';
          import { Routes, Route, useNavigate, BrowserRouter, NavLink } from 'react-router-dom';
    import axios from "axios";${
-     req.body.frontend?.NavBarComponent ? "\n// import NavBar from '';" : ''
+     req.body.frontend?.NavBarComponent ? "\n// import NavBar from '';" : ""
    }${
       req.body.frontend?.RegisterComponent
         ? "\n// import Register from '';"
-        : ''
-    }${req.body.frontend?.LoginComponent ? "\n// import Login from '';" : ''}${
+        : ""
+    }${req.body.frontend?.LoginComponent ? "\n// import Login from '';" : ""}${
       req.body.frontend?.ErrorPageComponent
         ? "\n// import ErrorPage from '';"
-        : ''
-    }${req.body.frontend?.HomeComponent ? "\n// import Home from '';" : ''} 
+        : ""
+    }${req.body.frontend?.HomeComponent ? "\n// import Home from '';" : ""} 
 
 // ## index.js file ##
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -354,24 +351,24 @@ function App() {
 
   return (
     <div>
-      ${req.body.frontend?.NavBarComponent ? '<NavBar />' : ''}
+      ${req.body.frontend?.NavBarComponent ? "<NavBar />" : ""}
      <Routes>
       ${
         req.body.frontend?.HomeComponent
           ? `\n<Route path='/' element={<Home />} />`
-          : ''
+          : ""
       }${
       req.body.frontend.RegisterComponent
         ? `\n<Route path='/register' element={<Register />} />`
-        : ''
+        : ""
     }${
       req.body.frontend.LoginComponent
         ? `\n<Route path='/login' element={<Login />} />`
-        : ''
+        : ""
     }${
       req.body.frontend?.ErrorPageComponent
         ? `\n<Route path='*' element={<ErrorPage />} />`
-        : ''
+        : ""
     }
      </Routes>  
     </div>
@@ -395,7 +392,7 @@ function NavBar() {
   );
 }
 `
-    : ''
+    : ""
 }
 
 ${
@@ -411,7 +408,7 @@ function Home() {
   );
 }
 `
-    : ''
+    : ""
 }
 
 ${
@@ -427,7 +424,7 @@ function ErrorPage() {
   );
 }
 `
-    : ''
+    : ""
 }
 
 ${
@@ -469,16 +466,16 @@ function Register() {
       ${req.body.registrationInputs
         .map((input) => {
           return `
-          <label htmlFor="${input.id ? `${input.id}` : ''}">${
+          <label htmlFor="${input.id ? `${input.id}` : ""}">${
             input.name
           }</label>
-          <input ${input.event ? `${input.event}={onChangeHandler}` : ''} ${
-            input.type ? `type="${input.type}"` : ''
-          } ${input.placeholder ? `placeholder="${input.placeholder}"` : ''} ${
-            input.name ? `name="${input.name}"` : ''
-          }${input.required ? ` required` : ''} />`;
+          <input ${input.event ? `${input.event}={onChangeHandler}` : ""} ${
+            input.type ? `type="${input.type}"` : ""
+          } ${input.placeholder ? `placeholder="${input.placeholder}"` : ""} ${
+            input.name ? `name="${input.name}"` : ""
+          }${input.required ? ` required` : ""} />`;
         })
-        .join('\n      ')}
+        .join("\n      ")}
        </div>
        <button type="submit" value="Register">
          Register
@@ -487,7 +484,7 @@ function Register() {
   );
 }
 `
-    : ''
+    : ""
 }
 
 ${
@@ -533,16 +530,16 @@ function Login() {
       ${req.body.loginInputs
         .map((input) => {
           return `
-          <label htmlFor="${input.id ? `${input.id}` : ''}">${
+          <label htmlFor="${input.id ? `${input.id}` : ""}">${
             input.name
           }</label>
-          <input ${input.event ? `${input.event}={onChangeHandler}` : ''} ${
-            input.type ? `type="${input.type}"` : ''
-          } ${input.placeholder ? `placeholder="${input.placeholder}"` : ''} ${
-            input.name ? `name="${input.name}"` : ''
-          }${input.required ? ` required` : ''} />`;
+          <input ${input.event ? `${input.event}={onChangeHandler}` : ""} ${
+            input.type ? `type="${input.type}"` : ""
+          } ${input.placeholder ? `placeholder="${input.placeholder}"` : ""} ${
+            input.name ? `name="${input.name}"` : ""
+          }${input.required ? ` required` : ""} />`;
         })
-        .join('\n      ')}
+        .join("\n      ")}
        </div>
         <button type="submit" value="Login">
           Login
@@ -552,7 +549,7 @@ function Login() {
   );
 }
 `
-    : ''
+    : ""
 }
 `;
 
@@ -604,7 +601,7 @@ function Login() {
 }`;
     // write package json file
     fs.writeFile(
-      path.join(__dirname, '/codeTemplates/server/package.json'),
+      path.join(__dirname, "/codeTemplates/server/package.json"),
       backendPackage_json,
       (error) => {
         if (error) throw error;
@@ -612,14 +609,14 @@ function Login() {
     );
     // write server.js file
     fs.writeFile(
-      path.join(__dirname, '/codeTemplates/server/template1.js'),
+      path.join(__dirname, "/codeTemplates/server/template1.js"),
       backendTemplate,
       (err) => {
         if (err) throw err;
       }
     );
     fs.writeFile(
-      path.join(__dirname, '/codeTemplates/client/src/package.json'),
+      path.join(__dirname, "/codeTemplates/client/src/package.json"),
       frontendPackage_json,
       (err) => {
         if (err) throw err;
@@ -627,7 +624,7 @@ function Login() {
     );
     // write reactTemplate file
     fs.writeFile(
-      path.join(__dirname, '/codeTemplates/client/src/index.js'),
+      path.join(__dirname, "/codeTemplates/client/src/index.js"),
       frontEndTemplate,
       (err) => {
         if (err) throw err;

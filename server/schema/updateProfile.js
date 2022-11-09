@@ -26,7 +26,6 @@ exports.updatingUser = [
   check('newPasswordConfirm')
     .if(check('newPassword').exists())
     .custom((val, { req }) => {
-      console.log(val, req.body.newPassword);
       if (val === req.body.newPassword) {
         return true;
       } else {

@@ -1,5 +1,18 @@
-import React, { useState } from 'react';
-
+import React from "react";
+import errorPage from "../assets/images/errorPage.png";
 export default function ErrorPage() {
-  return <h1>Page not Found</h1>;
+  return (
+    <div
+      style={{
+        height: "80vh",
+
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {" "}
+      <img src={errorPage} alt="error page" />
+    </div>
+  );
 }

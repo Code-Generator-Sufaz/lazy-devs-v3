@@ -18,16 +18,14 @@ const CodeTemplate = ({ temp }) => {
   }, [templates]);
 
   return (
-    // <pre key={i}>
     <Main className={darkTheme ? "dark-theme" : "light-theme"}>
       <CodeblockDiv className={darkTheme ? "dark-theme" : "light-theme"}>
         <h3>Backend - server/server.js</h3>
-
         <Editor
           height="60vh"
           width="100%"
           defaultLanguage="javascript"
-          theme={darkTheme ? "vs-dark" : "vs-light"}
+          theme={darkTheme ? "vs-dark" : "light"}
           value={temp?.backend}
           options={options}
           lineNumbers="off"
@@ -72,13 +70,12 @@ const CodeTemplate = ({ temp }) => {
           height="30vh"
           width="100%"
           defaultLanguage="python"
-          theme="vs-dark"
+          theme={darkTheme ? "vs-dark" : "vs-light"}
           value={temp?.backendDotenv}
           options={options}
         />
       </CodeblockDiv>
     </Main>
-    //  </pre>
   );
 };
 

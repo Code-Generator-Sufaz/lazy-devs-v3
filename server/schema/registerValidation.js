@@ -22,7 +22,6 @@ exports.checkingUser = [
     .exists({ checkFalsy: true })
     .withMessage('Please confirm your password')
     .custom((val, { req }) => {
-      console.log(val, req.body.password);
       if (val === req.body.password) return true;
       else throw new ExpressError('Passwords do not match', 300);
     }),

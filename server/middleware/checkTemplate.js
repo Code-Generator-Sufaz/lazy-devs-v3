@@ -3,17 +3,24 @@ const ExpressError = require("../ExpressError");
 exports.checkTemplate = async (req, res, next) => {
   const user = req.session.user;
   const existingCode = await Code.findOne({
-    projectName: req.body.projectName,
+    templateName: req.body.templateName,
     createdBy: user._id,
   });
   if (existingCode) {
     return next(
       new ExpressError("Project with the same name already exists", 300)
     );
-  } else if (req.body.projectName.trim().length < 5) {
+  } else if (req.body.templateName?.trim()?.length < 1) {
     return next(
       new ExpressError(
-        "Project name should not have less than 5 characters",
+        "Project name should not be empty",
+        300
+      )
+    );
+  } else if (req.body.templateName?.trim()?.length > 15) {
+    return next(
+      new ExpressError(
+        "Project name should not have more than 15 characters",
         300
       )
     );

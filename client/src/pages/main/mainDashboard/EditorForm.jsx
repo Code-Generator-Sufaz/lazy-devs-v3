@@ -12,7 +12,6 @@ import Modal from "../../../components/UI/Modal.jsx";
 import ServerInitForm from "./templateEditorForms/ServerInitForm";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import { TbHandClick } from "react-icons/tb";
-import { AiOutlineFileDone } from "react-icons/ai";
 import { baseUrl } from "../../../assets/api/api.js";
 
 export default function InputForm() {
@@ -71,11 +70,6 @@ export default function InputForm() {
         return { ...item, main: true };
       }
       return item;
-    });
-    const mainInput = newArrInputs.filter((el) => {
-      if (el.main) {
-        return el;
-      }
     });
 
     const newArrLogInputs = arrOfLoginInputs.map((item) => {
@@ -441,23 +435,16 @@ const ArrowDown = styled(MdKeyboardArrowDown)`
   margin-right: 1rem;
 `;
 
-const Done = styled(AiOutlineFileDone)`
-  font-size: 1rem;
-  font-weight: 600;
-  margin-right: 1rem;
-`;
-
 const Save = styled(TbHandClick)`
   font-size: 1rem;
   font-weight: 600;
 `;
 const Navlink = styled(NavLink)`
-  margin-top: 1rem;
+  margin: 1rem 0 5rem 1rem;
   background-color: #fca311;
   letter-spacing: 2px;
   width: 15rem;
   height: 1.3rem;
-  margin-left: 1rem;
   border: 2px solid transparent;
   border-radius: 0.2rem;
   color: white;
@@ -469,6 +456,7 @@ const Navlink = styled(NavLink)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   &.light-mode {
     color: var(--backgroundColor);
     &:hover {

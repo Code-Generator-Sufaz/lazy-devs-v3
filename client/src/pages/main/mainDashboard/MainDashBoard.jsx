@@ -132,19 +132,21 @@ const SpreadButton = styled.button`
   background: transparent;
   font-size: 3rem;
   background-color: transparent;
+  cursor: pointer;
+  &.dark-theme {
+    color: white;
+    background-color: var(--backgroundColor);
+  }
+  &.light-theme {
+    color: var(--backgroundColor);
+    background-color: var(--textColor);
+  }
   @keyframes pulse {
     from {
-      transform: translateX(-10px);
+      transform: translateX(-2px);
     }
     to {
       transform: translateX(0);
     }
   }
 `;
-// const CloseButton = styled.button`
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   border: none;
-//   font-size: 3rem;
-// `;
