@@ -198,7 +198,7 @@ function NavigationMenu() {
               </NavbarLinkExtendedMobile>
             </>
           ) : (
-            <div>
+            <>
               <NavbarLinkExtendedMobile
                 className={darkTheme ? "dark-theme" : "light-theme"}
                 to={`/profile`}
@@ -217,7 +217,7 @@ function NavigationMenu() {
                   </ListItemIcon> */}
                 Logout
               </NavbarLinkExtendedMobile>
-            </div>
+            </>
           )}
         </NavbarExtendedContainer>
       )}
