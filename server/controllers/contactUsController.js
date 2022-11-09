@@ -2,7 +2,6 @@
 const {sendContactUsEmail} = require('../models/Email')
 
 const contactUsController = (req, res) =>{
-    console.log('get a user message')
 
     sendContactUsEmail(req.body)
     .then(data=>{

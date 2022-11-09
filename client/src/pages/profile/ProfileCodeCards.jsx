@@ -1,20 +1,18 @@
-import React, { useContext, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-import moment from 'moment';
-import { Context } from '../../store/Context';
-import JSZip from 'jszip';
-import { saveAs } from 'file-saver';
-import { BiShow } from 'react-icons/bi';
-import { BsTrash, BsDownload } from 'react-icons/bs';
-import { baseUrl } from '../../assets/api/api';
+import React, { useContext, useEffect, useState } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import moment from "moment";
+import { Context } from "../../store/Context";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
+import { BiShow } from "react-icons/bi";
+import { BsTrash, BsDownload } from "react-icons/bs";
+import { baseUrl } from "../../assets/api/api";
 const ProfileCodeCards = () => {
   const [cards, setCards] = useState([]);
-  const { setProfileTemplates,
-          finalDataToSend 
-  } = useContext(Context);
+  const { setProfileTemplates, finalDataToSend } = useContext(Context);
 
-  console.log(finalDataToSend)
+  console.log(finalDataToSend);
   // set root json filev
   const rootJson = `{
     "name": "lazy_devs",
@@ -34,21 +32,20 @@ const ProfileCodeCards = () => {
     "dependencies": {
       "concurrently": "*"
     }
-  }`
-
-
+  }`;
 
   useEffect(() => {
     (async () => {
       try {
         const data = await axios.get(`${baseUrl}/user/templates`);
         setCards(data.data.template);
+        console.log(data.data.template);
       } catch (err) {
         console.log(err);
       }
     })();
   }, []);
-
+  console.log();
   const showTemplateHandler = async (id) => {
     try {
       const data = await axios.get(`${baseUrl}/user/templates/${id}`);
@@ -70,46 +67,44 @@ const ProfileCodeCards = () => {
       const data = await axios.get(`${baseUrl}/user/templates/download/${id}`);
       const zip = new JSZip();
       console.log(data.data);
-      zip
-      .folder(data.data.templateName)
-      .file('package.json', rootJson)
+      zip.folder(data.data.templateName).file("package.json", rootJson);
       zip
         .folder(data.data.templateName)
-        .folder('client')
-        .folder('src')
-        .file('App.js', data.data.frontend);
-        zip
-        .folder(data.data.templateName)
-        .folder('client')
-        .folder('src')
-        .file('index.js', indexJs);
-        zip
-        .folder(data.data.templateName)
-        .folder('client')
-        .folder('public')
-        .file('index.html', indexHtml);
+        .folder("client")
+        .folder("src")
+        .file("App.js", data.data.frontend);
       zip
         .folder(data.data.templateName)
-        .folder('server')
-        .file('server.js', data.data.backend);
+        .folder("client")
+        .folder("src")
+        .file("index.js", indexJs);
+      zip
+        .folder(data.data.templateName)
+        .folder("client")
+        .folder("public")
+        .file("index.html", indexHtml);
+      zip
+        .folder(data.data.templateName)
+        .folder("server")
+        .file("server.js", data.data.backend);
 
       zip
         .folder(data.data.templateName)
-        .folder('client')
-        .file('package.json', data.data.frontEndPackageJSON);
+        .folder("client")
+        .file("package.json", data.data.frontEndPackageJSON);
 
       zip
         .folder(data.data.templateName)
-        .folder('server')
-        .file('package.json', data.data.backendPackageJSON);
-        zip
+        .folder("server")
+        .file("package.json", data.data.backendPackageJSON);
+      zip
         .folder(data.data.templateName)
-        .folder('server')
-        .file('.env', data.data.backendDotenv);
+        .folder("server")
+        .file(".env", data.data.backendDotenv);
 
       zip
         .generateAsync({
-          type: 'blob',
+          type: "blob",
         })
         .then((content) => {
           saveAs(content, data.data.templateName);
@@ -121,25 +116,25 @@ const ProfileCodeCards = () => {
   return (
     <ProfileCodeCardsWindow>
       {cards.length > 0 && (
-        <h3 style={{ margin: '2rem 0 1rem' }}>Your previous work:</h3>
+        <h3 style={{ margin: "2rem 0 1rem" }}>Your previous work:</h3>
       )}
       {cards.map((card, index) => {
         return (
           <>
             <CodeCardBox>
               <p>{card.templateName}</p>
-              <div style={{ width: '50%' }}>
+              <div style={{ width: "50%" }}>
                 <div>
                   <Download
                     onClick={() => download(card._id)}
-                    style={{ fontSize: '30px', fontWeight: 'bold' }}
+                    style={{ fontSize: "30px", fontWeight: "bold" }}
                   />
                 </div>
                 <div onClick={() => showTemplateHandler(card._id)}>
-                  <Show style={{ fontSize: '30px', fontWeight: 'bold' }} />
+                  <Show style={{ fontSize: "30px", fontWeight: "bold" }} />
                 </div>
                 <div onClick={() => deleteSavedTempHandler(card._id)}>
-                  <Trash style={{ fontSize: '30px', fontWeight: 'bold' }} />
+                  <Trash style={{ fontSize: "30px", fontWeight: "bold" }} />
                 </div>
               </div>
             </CodeCardBox>
@@ -180,6 +175,8 @@ const CodeCardBox = styled.div`
   cursor: pointer;
   p {
     font-size: 16px;
+    max-width: 50%;
+    overflow: hidden;
   }
   div {
     display: flex;
@@ -216,7 +213,6 @@ const CreatedAt = styled.span`
   margin-top: 0.3rem;
   font-size: 0.5rem;
 `;
-
 
 const indexHtml = `
 <!DOCTYPE html>
@@ -264,7 +260,7 @@ const indexHtml = `
 </html>
 `;
 
-  const indexJs = `import React from 'react';
+const indexJs = `import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 
@@ -279,5 +275,3 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 `;
-
-
