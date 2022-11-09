@@ -7,11 +7,9 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { BiShow } from 'react-icons/bi';
 import { BsTrash, BsDownload } from 'react-icons/bs';
-import MainButton from '../../components/UI/MainButton';
 import { baseUrl } from '../../assets/api/api';
 const ProfileCodeCards = () => {
   const [cards, setCards] = useState([]);
-  const { profileTemplates } = useContext(Context);
   const { setProfileTemplates,
           finalDataToSend 
   } = useContext(Context);
@@ -73,39 +71,39 @@ const ProfileCodeCards = () => {
       const zip = new JSZip();
       console.log(data.data);
       zip
-      .folder(data.data.projectName)
+      .folder(data.data.templateName)
       .file('package.json', rootJson)
       zip
-        .folder(data.data.projectName)
+        .folder(data.data.templateName)
         .folder('client')
         .folder('src')
         .file('App.js', data.data.frontend);
         zip
-        .folder(data.data.projectName)
+        .folder(data.data.templateName)
         .folder('client')
         .folder('src')
         .file('index.js', indexJs);
         zip
-        .folder(data.data.projectName)
+        .folder(data.data.templateName)
         .folder('client')
         .folder('public')
         .file('index.html', indexHtml);
       zip
-        .folder(data.data.projectName)
+        .folder(data.data.templateName)
         .folder('server')
         .file('server.js', data.data.backend);
 
       zip
-        .folder(data.data.projectName)
+        .folder(data.data.templateName)
         .folder('client')
         .file('package.json', data.data.frontEndPackageJSON);
 
       zip
-        .folder(data.data.projectName)
+        .folder(data.data.templateName)
         .folder('server')
         .file('package.json', data.data.backendPackageJSON);
         zip
-        .folder(data.data.projectName)
+        .folder(data.data.templateName)
         .folder('server')
         .file('.env', data.data.backendDotenv);
 
@@ -114,7 +112,7 @@ const ProfileCodeCards = () => {
           type: 'blob',
         })
         .then((content) => {
-          saveAs(content, data.data.projectName);
+          saveAs(content, data.data.templateName);
         });
     } catch (err) {
       console.log(err);
@@ -129,7 +127,7 @@ const ProfileCodeCards = () => {
         return (
           <>
             <CodeCardBox>
-              <p>{card.projectName}</p>
+              <p>{card.templateName}</p>
               <div style={{ width: '50%' }}>
                 <div>
                   <Download
