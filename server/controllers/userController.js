@@ -45,11 +45,9 @@ const resetController = async (req, res, next) => {
 
     
     if(user != null) {
-      console.log(user)
       resetPasswordMail(email, user.id, domain);
       res.send('Email sent');
     } else {
-      console.log('fffff')
       return next(new ExpressError('Email not found', 300))
     }
   } catch (err) {
@@ -73,7 +71,6 @@ const settingNewPassController = async (req, res, next) => {
           password: hash,
           resetLink: '',
         });
-        console.log('Yeees');
         res.send('Password updated');
       } else {
         return next(new ExpressError('Passwords do not match', 400));

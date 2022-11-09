@@ -1,6 +1,6 @@
-const Code = require('../models/Codes');
-const ExpressError = require('../ExpressError');
-const { populate } = require('../models/Codes');
+const Code = require("../models/Codes");
+const ExpressError = require("../ExpressError");
+const { populate } = require("../models/Codes");
 exports.addCode = async (req, res, next) => {
   try {
     const user = req.session.user;
@@ -8,11 +8,11 @@ exports.addCode = async (req, res, next) => {
 
     const newCode = new Code(code);
     newCode.createdBy = user._id;
-    newCode.projectName = req.body.projectName;
+    newCode.templateName = req.body.templateName;
     await newCode.save();
     res.send(newCode);
   } catch (err) {
-    next(new ExpressError('Failed to save data'));
+    next(new ExpressError("Failed to save data"));
   }
 };
 
@@ -21,8 +21,7 @@ exports.getUserTemplatesController = async (req, res, next) => {
     const template = await Code.find({ createdBy: req.session?.user?._id });
     res.json({ template });
   } catch (err) {
-    console.log(err);
-    next(new ExpressError('Failed to fetch template'));
+    next(new ExpressError("Failed to fetch template"));
   }
 };
 
@@ -32,7 +31,7 @@ exports.getSpecificTemplatesController = async (req, res, next) => {
     const template = await Code.findById(id);
     res.send(template);
   } catch (err) {
-    next(new ExpressError('Failed to retrieve template'));
+    next(new ExpressError("Failed to retrieve template"));
   }
 };
 
@@ -42,7 +41,7 @@ exports.deleteSavedTemplate = async (req, res, next) => {
     const templateToRemove = await Code.findByIdAndDelete(id);
     res.send(templateToRemove);
   } catch (error) {
-    next(new ExpressError('Failed to delete template'));
+    next(new ExpressError("Failed to delete template"));
   }
 };
 exports.downloadTemplate = async (req, res, next) => {
@@ -51,6 +50,6 @@ exports.downloadTemplate = async (req, res, next) => {
     const downloadTemplate = await Code.findById(id);
     res.send(downloadTemplate);
   } catch (error) {
-    next(new ExpressError('Failed to download template'));
+    next(new ExpressError("Failed to download template"));
   }
 };
