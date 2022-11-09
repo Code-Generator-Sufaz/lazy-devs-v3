@@ -59,8 +59,8 @@ exports.loginController = async (req, res, next) => {
 // logout Function
 
 exports.logoutController = async (req, res) => {
+  // req.logout && req.logout();  // how to log out ?
   req.session.destroy();
-  req.logout && req.logout();  // how to log out ?
   res.json("You are logged out");
 };
 
