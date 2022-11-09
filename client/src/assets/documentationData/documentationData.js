@@ -144,7 +144,7 @@ export const GettingStartedData = [
       },
       { text: "Type npm install , enter, wait until installation finished" },
       {
-        text: "Type npm run install_both , enter, wait till .... here you need wait the info from front end, the time is a little bit long",
+        text: "Type npm run install_both , enter, wait till installation finished. Here you need to wait for the information from front-end, this takes a little bit longer",
       },
       { text: "Type npm start , enter, now you can start your project" },
     ],

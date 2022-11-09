@@ -82,6 +82,36 @@ export default function Documentation() {
                 <p>nodemailer link : {step.links.nodemailer}</p>
               </div>
             );
+          } else if (step.image) {
+            return (
+              <div>
+                <h3>{step.step}</h3>
+                <p>{step.content}</p>
+                <ol>
+                  {step.steps?.map((innerStep, i) => {
+                    if (i === 0) {
+                      return <li>{innerStep?.text}</li>;
+                    } else if (i === 1 && innerStep.link) {
+                      return (
+                        <li>
+                          {innerStep?.link?.jwt} & {innerStep?.link?.cookie}{" "}
+                          {innerStep.text}
+                        </li>
+                      );
+                    } else if (i === 2 && innerStep.link) {
+                      return (
+                        <li>
+                          {innerStep?.link?.jwt} & {innerStep?.link?.axios}{" "}
+                          {innerStep?.text}
+                        </li>
+                      );
+                    }
+                    return <li>{innerStep.text}</li>;
+                  })}
+                </ol>
+                <img src={step.image} alt="description" />
+              </div>
+            );
           }
           return (
             <div>
@@ -109,7 +139,6 @@ export default function Documentation() {
                   return <li>{innerStep.text}</li>;
                 })}
               </ol>
-              <img src={step.image} alt="description" />
             </div>
           );
         })}
