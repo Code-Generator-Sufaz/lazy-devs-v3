@@ -14,7 +14,6 @@ import { baseUrl } from '../../assets/api/api';
 export default function ProfileSidebar() {
   const { user, setUser, darkTheme } = useContext(Context);
   const [openFormUserUpdate, setOpenFormUserUpdate] = useState(false);
-  const [openPasswordUpdate, setOpenPasswordUpdate] = useState(false);
   // const [formInputs, setFormInputs] = useState({});
   const [currentUser, setCurrentUser] = useState({
     firstName: user.firstName,
@@ -283,4 +282,3 @@ const LabelPhoto = styled.label`
   font-size: 20px;
 `;
 
-const UpdateAccountBTN = styled.button``;

@@ -21,7 +21,7 @@ import Contact from './pages/main/Contact';
 
 
 function App() {
-  const { setUser, isLoggedIn, setIsLoggedIn, darkTheme, setDarkTheme } =
+  const { setUser, isLoggedIn, setIsLoggedIn, darkTheme } =
     useContext(Context);
 
   useEffect(() => {
@@ -71,7 +71,6 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
-      {/* <Footer /> */}
     </>
   );
 }

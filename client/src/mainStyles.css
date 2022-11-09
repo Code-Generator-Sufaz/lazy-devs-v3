@@ -28,9 +28,6 @@
   box-sizing: border-box;
 }
 
-body {
-}
-
 #portal {
   position: fixed;
   z-index: 9999999;
