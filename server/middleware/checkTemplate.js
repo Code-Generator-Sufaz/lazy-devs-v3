@@ -10,7 +10,7 @@ exports.checkTemplate = async (req, res, next) => {
     return next(
       new ExpressError("Project with the same name already exists", 300)
     );
-  } else if (req.body.projectName.trim().length < 5) {
+  } else if (req.body.projectName?.trim()?.length < 5) {
     return next(
       new ExpressError(
         "Project name should not have less than 5 characters",
