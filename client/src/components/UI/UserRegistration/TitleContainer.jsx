@@ -21,6 +21,11 @@ const Container = styled.div`
         color: var(--warningColor);
       }
     }
+    @media (max-width: 900px) {
+      h2 {
+        font-size:3.5rem;
+      }
+    }
   }
   &.dark-theme {
     h2 {
@@ -30,6 +35,11 @@ const Container = styled.div`
       color: var(--lightBackgroundColor);
       span {
         color: var(--warningColor);
+      }
+    }
+    @media (max-width: 900px) {
+      h2 {
+        font-size:3.5rem;
       }
     }
   }
