@@ -7,6 +7,17 @@ const configReqBody = (obj) => {
   obj.backend_packages ? null : (obj.backend_packages = {});
   obj.frontend_packages ? null : (obj.frontend_packages = {});
 
+  // trim all the space in req.body
+  for (let key in obj) {
+    if (typeof obj[key] == 'string') obj[key] = obj[key].trim()
+  }
+  // trim all the space in req.body.nodemailerSetting
+  if (obj.backend_packages.nodemailer) {
+    for (let key in obj.nodemailerSetting) {
+      if (typeof obj.nodemailerSetting[key] == 'string') obj.nodemailerSetting[key] = obj.nodemailerSetting[key].trim()
+    }
+  }
+
   // add bcrypet
   if (
     obj.backend_packages.nodemailer ||
@@ -73,7 +84,7 @@ const configReqBody = (obj) => {
       break;
   }
 
-  // set default values
+  // set default values | .trim is to prevente " "
   obj.project_name?.trim() ? null : (obj.project_name = "lazy_devs");
 
   obj.project_description?.trim()
