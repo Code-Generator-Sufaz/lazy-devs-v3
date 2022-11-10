@@ -166,6 +166,7 @@ function Navbar({ toggle, setToggle, userAuth, setUserAuth, setDisplay }) {
         ? `// Template - 1 session + proxy
     fetch(baseURL + "/user/profile" )
     .then(response => response.json())
+    .then(data => setDisplay(pre=> ({ data: data})))
     .catch(err => setDisplay(pre=> ({ err: err}) )) // Template end`
         : ""
     }
