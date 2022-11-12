@@ -1,10 +1,4 @@
 
-- Extract the project
-- open teminal in project root folder(where you can see server folder and client folder)
-- type ```npm install``` , enter, wait till ....
-- type ```npm run install_both``` , enter, wait till .... here you need wait the info from front end, the time is a little bit long
-- type ```npm start``` , enter, now you can start your project
-
 # LAZY DEVS - OVERVIEW
 
 Lazy Devs is an authentication tool for developers. It will create for you all the authentication backend and front-end forms that are necessary for a user to log in, register, and log out from your website.
@@ -13,7 +7,7 @@ Lazy Devs is an authentication tool for developers. It will create for you all t
 
 Lazy Devs is an authentication tool for websites. Usually, developers spend 1 - 2 days on their authentication code, both on the front end and back end. This tool will create all the code for you. In our tool, we choose the most used packages and approaches by developers to create user authentication for their websites. In just a few clicks you can get it done, copy or download a zip folder, and you are all set! :D
 
-## ADVANTAGES OF THE LAZY DEVS TOOL:
+## ADVANTAGES OF THE LAZY DEVS TOOL
 
 - save time: usually, it takes 1-2 days of work to write an authentication backend and frontend code, with lazy devs you get it in less than a minute.
 - Freedom to choose the best approach: As developers, we know that each and one of us has his own way of writing the code. After some research we’ve made, we chose the 3 most used approaches for authentication in a website and let you choose them.
@@ -39,16 +33,16 @@ choose which inputs to add for the login component ( how will the user log in? E
 
 when creating a user authentication there are many approaches. After some research, we've made we chose for you the 3 most used methods by developers for you to choose from. Just check one of them, and it will be implemented in your template.
 
-SESSION[SESSION](https://github.com/expressjs/session#readme)
-JWT[JWT](https://jwt.io/introduction) & COOKIE[COOKIE](https://github.com/jshttp/cookie) —> Token inside the cookie to authenticate the user.
-JWT[JWT](https://jwt.io/introduction) & AXIOS[AXIOS](https://axios-http.com/docs/intro) —> Token inside the header of the request.
+[SESSION](https://github.com/expressjs/session#readme)
+[JWT](https://jwt.io/introduction) & [COOKIE](https://github.com/jshttp/cookie) —> Token inside the cookie to authenticate the user.
+[JWT](https://jwt.io/introduction) & [AXIOS](https://axios-http.com/docs/intro) —> Token inside the header of the request.
 
 ### Step Four - Choose packages
 
 Here you can choose if you want dotenv and nodemailer to be installed and implemented in your app.
 
-- dotenv[DOTENV](https://www.npmjs.com/package/dotenv)
-- nodemailer[NODEMAILER](https://nodemailer.com/about/)
+- [DOTENV](https://www.npmjs.com/package/dotenv)
+- [NODEMAILER](https://nodemailer.com/about/)
 
 ### Step five - Initializing your backend app
 
