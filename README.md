@@ -1,9 +1,3 @@
-# lazy-devs-v3
-hey, here we go V3
-
-
-# How to use
-After you download template zip file.
 
 - Extract the project
 - open teminal in project root folder(where you can see server folder and client folder)
@@ -11,48 +5,99 @@ After you download template zip file.
 - type ```npm run install_both``` , enter, wait till .... here you need wait the info from front end, the time is a little bit long
 - type ```npm start``` , enter, now you can start your project
 
+# LAZY DEVS - OVERVIEW
 
+Lazy Devs is an authentication tool for developers. It will create for you all the authentication backend and front-end forms that are necessary for a user to log in, register, and log out from your website.
 
+## INTRODUCTION
 
-# error code for running template
-{errCode: 0, data: error, path: 'encrypt.genSalt'}
+Lazy Devs is an authentication tool for websites. Usually, developers spend 1 - 2 days on their authentication code, both on the front end and back end. This tool will create all the code for you. In our tool, we choose the most used packages and approaches by developers to create user authentication for their websites. In just a few clicks you can get it done, copy or download a zip folder, and you are all set! :D
 
-{errCode: 1, data: error, path: 'encrypt.hash'}
+## ADVANTAGES OF THE LAZY DEVS TOOL:
 
-{errCode: 2,data: error,path: "compareEncryptData.compare",}
+- save time: usually, it takes 1-2 days of work to write an authentication backend and frontend code, with lazy devs you get it in less than a minute.
+- Freedom to choose the best approach: As developers, we know that each and one of us has his own way of writing the code. After some research we’ve made, we chose the 3 most used approaches for authentication in a website and let you choose them.
+- It's easy: instead of investing lots of time and energy in researching and implementing packages and methods, just a few clicks and you have it.
+- Easy for beginners: Our tool is perfect for beginners. First, it will help them to get their website authentication fast and perfect, and also by doing that they can learn the most used methods of creating a user authentication and look deep into the code with small explanation comments that we added.
 
-{errCode: 3, data: error, path: 'jwtSign.sign.payload.obj'}
+## GETTING STARTED
+ 
+### Step One - create inputs
 
-{errCode: 4, data: error, path: 'jwtSign.sign.payload.str'}
+for registration or logging into a website we use inputs for getting the user data.
 
-{errCode: 5, data: error, path: 'jwtVerify.verify'}
+1. choose a name for your input.
+2. select the input type you desire.
+3. not mandatory, if you want the input to be unique or required turn the want validation switch to on and choose which one of them you want or all of them.
+4. Click on Generate button, to generate your input.
 
-{errCode: 20, data: error, path: 'mongodbSave.create'}
+### Step Two - choose which inputs to add for the login component
 
-{errCode: 21, data: error, path: 'mongodbUpdate.updateOne'}
+choose which inputs to add for the login component ( how will the user log in? Email & password ? Or email & username ? ) and select one of them to be the main input for the login component. automatically the first inputs you create will go to the registration component. in case you don't add any of them to login input our tool automatically will choose for you the first one you've created.
 
-{errCode: 22, data: error, path: 'mongodbFindOne.findOne'}
+### Step Three - choose the auth method
 
-{errCode: 26, data: error, path: 'req.session.save'}
+when creating a user authentication there are many approaches. After some research, we've made we chose for you the 3 most used methods by developers for you to choose from. Just check one of them, and it will be implemented in your template.
 
-{errCode: 11, data: { msg: "email already used" }, path: 'create user'} // find the email address in DB
+SESSION[SESSION](https://github.com/expressjs/session#readme)
+JWT[JWT](https://jwt.io/introduction) & COOKIE[COOKIE](https://github.com/jshttp/cookie) —> Token inside the cookie to authenticate the user.
+JWT[JWT](https://jwt.io/introduction) & AXIOS[AXIOS](https://axios-http.com/docs/intro) —> Token inside the header of the request.
 
-{ errCode: 12, data: error, path: 'nodemailer.sendEmail' }
+### Step Four - Choose packages
 
-{ errCode: 14, data: err, path: 'send verification email' }
+Here you can choose if you want dotenv and nodemailer to be installed and implemented in your app.
 
-{errCode: 15, data: { msg: "email not find" }, path: 'user login'}
+- dotenv[DOTENV](https://www.npmjs.com/package/dotenv)
+- nodemailer[NODEMAILER](https://nodemailer.com/about/)
 
-{errCode: 16, data: { msg: "wrong password" }, path: 'user login'}
+### Step five - Initializing your backend app
 
-{errCode: 17, data: { msg: "wow something wrong" , ...err}, path: 'user logout'}
+Usually when creating a nodeJS app we can initialize our app details, for example, author name, project description, and so on.. here you can fill up the form and get those details injected into your app.
 
-{errCode: 18, data: { msg: "wow something wrong" , ...err}, path: '/user/profile'}
+### Step six - create the template
 
-{ errCode: 33, data: { msg: "you need login first" }, path: 'middleware.auth' }
+Click the CREATE TEMPLATE button and your finished template will appear on the right side of your screen.
 
-# some template logic
-- when you want use nodemailer, you must have a input which type == "email".
-- password will always encrypted
-- registrationInputs will be add to Schema except type == "button"
-- if you put nothing in loginInputs, the main input of registrationInputs will be the loginInputs(your first registrationInput will be main input by default)
+### Step seven - NOT MANDATORY
+
+If you want to save the template and get it whenever you need it you can register to our database and save your templates and review them whenever you need.
+
+### Step eight - implementing your template in your code editor
+
+Install dependencies in client and server repositories ( npm install in terminal in both repositories ) then npm start. For registered users, you can download a zip folder of your template.
+
+1. Extract the project
+2. Open terminal in project root folder(where you can see server folder and client folder)
+3. Type ```npm install``` , enter, wait until installation finished
+4. Type ```npm run install_both``` , enter, and wait till both installed. here you need to wait for both back-end & front-end to compile. front-end compile usually takes a little longer.
+5. Type ```npm start``` , enter, now you can start your project
+
+### Step nine - start your project based on the template you've created
+
+## Some Template Logic
+
+- When you want to use nodemailer, you must have an input with type == 'email'.
+- Password will always get encrypted.
+- Registration Inputs will be added to Schema, except type == 'button'
+- If you put nothing in login inputs, the main input of registration inputs will be the login inputs (your first registration input will be the main input by default)
+
+## Error Code For Running The Template
+
+- {errCode: 0, data: error, path: 'encrypt.genSalt'}
+- {errCode: 1, data: error, path: 'encrypt.hash'}
+- {errCode: 2,data: error,path: 'compareEncryptData.compare',}
+- {errCode: 3, data: error, path: 'jwtSign.sign.payload.obj'}
+- {errCode: 4, data: error, path: 'jwtSign.sign.payload.str'}
+- {errCode: 5, data: error, path: 'jwtVerify.verify'}
+- {errCode: 20, data: error, path: 'mongodbSave.create'}
+- {errCode: 21, data: error, path: 'mongodbUpdate.updateOne'}
+- {errCode: 22, data: error, path: 'mongodbFindOne.findOne'}
+- {errCode: 26, data: error, path: 'req.session.save'}
+- {errCode: 11, data: { msg: 'email already used' }, path: 'create user'} // find the email address in DB
+- { errCode: 12, data: error, path: 'nodemailer.sendEmail' }
+- { errCode: 14, data: err, path: 'send verification email' }
+- {errCode: 15, data: { msg: 'email not find' }, path: 'user login'}
+- {errCode: 16, data: { msg: 'wrong password' }, path: 'user login'}
+- {errCode: 17, data: { msg: 'wow something wrong' , ...err}, path: 'user logout'}
+- {errCode: 18, data: { msg: 'wow something wrong' , ...err}, path: '/user/profile'}
+- { errCode: 33, data: { msg: 'you need login first' }, path: 'middleware.auth' }
