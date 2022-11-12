@@ -33,9 +33,9 @@ choose which inputs to add for the login component ( how will the user log in? E
 
 when creating a user authentication there are many approaches. After some research, we've made we chose for you the 3 most used methods by developers for you to choose from. Just check one of them, and it will be implemented in your template.
 
-[SESSION](https://github.com/expressjs/session#readme)
-[JWT](https://jwt.io/introduction) & [COOKIE](https://github.com/jshttp/cookie) —> Token inside the cookie to authenticate the user.
-[JWT](https://jwt.io/introduction) & [AXIOS](https://axios-http.com/docs/intro) —> Token inside the header of the request.
+- [SESSION](https://github.com/expressjs/session#readme)
+- [JWT](https://jwt.io/introduction) & [COOKIE](https://github.com/jshttp/cookie) —> Token inside the cookie to authenticate the user.
+- [JWT](https://jwt.io/introduction) & [AXIOS](https://axios-http.com/docs/intro) —> Token inside the header of the request.
 
 ### Step Four - Choose packages
 
