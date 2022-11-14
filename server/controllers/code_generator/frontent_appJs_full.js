@@ -250,11 +250,11 @@ function Navbar({ toggle, setToggle, userAuth, setUserAuth, setDisplay }) {
     <div className="navbar">
       <ul style={style.navbar_ul}>
         {!userAuth.login && <>
-          <li className="btn btn-light px-5"><span onClick={toggleSwitch} className="showSignIn">Sign up</span></li>
-          <li className="btn btn-light px-5"><span onClick={toggleSwitch} className="showLogIn">Log In</span></li>
+          <li className="btn btn-light px-5" onClick={toggleSwitch}><span className="showSignIn">Sign up</span></li>
+          <li className="btn btn-light px-5" onClick={toggleSwitch}><span className="showLogIn">Log In</span></li>
         </>}
-        {userAuth.login && <li className="btn btn-light px-5"><span onClick={logOutHandler} className="logOut">Log Out</span></li>}
-        <li className="btn btn-light px-5"><span onClick={profileHandler}>profile</span></li>
+        {userAuth.login && <li className="btn btn-light px-5" onClick={logOutHandler}><span className="logOut">Log Out</span></li>}
+        <li className="btn btn-light px-5" onClick={profileHandler}><span>profile</span></li>
       </ul>
     </div>
   );
