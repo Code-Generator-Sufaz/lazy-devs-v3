@@ -36,7 +36,7 @@ const configReqBody = (obj) => {
       // there is no main. let the first to be main, update mainInput 1- unique,
       // what if first is password, then in server.js we will have 2 password. so mainInput.type can not be password
       let triger = 0 
-      registrationInputs.forEach(x=>{
+      obj.registrationInputs.forEach(x=>{
         if (x.type !== "password" && triger == 0) {
           x.main = true;
           mainInput = x
@@ -45,8 +45,8 @@ const configReqBody = (obj) => {
       })
       // what if all the registrationInputs are password, than just take the first one, there will be error in server.js(double password in login controller)
       if (triger == 0) {
-        registrationInputs[0].main = true;
-        mainInput = registrationInputs[0]
+        obj.registrationInputs[0].main = true;
+        mainInput = obj.registrationInputs[0]
       }
     }
     // push maininput to loginInputs
