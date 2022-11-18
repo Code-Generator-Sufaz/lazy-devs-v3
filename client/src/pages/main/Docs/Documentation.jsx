@@ -42,8 +42,8 @@ export default function Documentation() {
           <ul>
             <li>
               save time: usually, it takes 1-2 days of work to write an
-              authentication backend and frontend code, with lazy devs you get
-              it in less than a minute.
+              authentication backend and frontend code, but with lazy devs you
+              get it in less than a minute.
             </li>
             <li>
               Freedom to choose the best approach: As developers, we know that
