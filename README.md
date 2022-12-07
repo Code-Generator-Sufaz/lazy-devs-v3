@@ -95,3 +95,4 @@ Install dependencies in client and server repositories ( npm install in terminal
 - {errCode: 17, data: { msg: 'wow something wrong' , ...err}, path: 'user logout'}
 - {errCode: 18, data: { msg: 'wow something wrong' , ...err}, path: '/user/profile'}
 - { errCode: 33, data: { msg: 'you need login first' }, path: 'middleware.auth' }
+# lazy-devs
